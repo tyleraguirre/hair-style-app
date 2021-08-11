@@ -53,32 +53,37 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-// Android KTX
-    implementation "androidx.core:core-ktx:$version_core"
+    // Android KTX
+        implementation "androidx.core:core-ktx:$version_core"
 
-// ConstraintLayout
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    // ConstraintLayout
+        implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
 
-// Coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_coroutine"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_coroutine"
+    // Coroutines
+        implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_coroutine"
+        implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_coroutine"
 
-// Kotlin Extensions and Coroutines support for Room
-    implementation "androidx.room:room-ktx:$version_room"
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$version_glide"
 
-// Material.io
-    implementation 'com.google.android.material:material:1.4.0'
 
-// Room and Lifecycle dependencies
-    implementation "androidx.room:room-runtime:$version_room"
-    kapt "androidx.room:room-compiler:$version_room"
-    implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
+    // Kotlin Extensions and Coroutines support for Room
+        implementation "androidx.room:room-ktx:$version_room"
 
-// Support libraries
+    // Material.io
+        implementation 'com.google.android.material:material:1.4.0'
+
+
+    // Room and Lifecycle dependencies
+        implementation "androidx.room:room-runtime:$version_room"
+        kapt "androidx.room:room-compiler:$version_room"
+        implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
+
+    // Support libraries
     implementation "androidx.appcompat:appcompat:$version_appcompat"
     implementation "androidx.fragment:fragment:$version_fragment"
     implementation "androidx.constraintlayout:constraintlayout:$version_constraint_layout"
 
-// ViewModel and LiveData
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$version_lifecycle"
+    // ViewModel and LiveData
+        implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$version_lifecycle"
 }
