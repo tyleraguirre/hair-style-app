@@ -66,6 +66,8 @@ dependencies {
     // Glide
     implementation "com.github.bumptech.glide:glide:$version_glide"
 
+    // Joda time library for dealing with time
+    implementation "joda-time:joda-time:$version_joda"
 
     // Kotlin Extensions and Coroutines support for Room
         implementation "androidx.room:room-ktx:$version_room"
@@ -105,4 +107,7 @@ dependencies {
 
     // ViewModel and LiveData
         implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$version_lifecycle"
+
+    // WorkManager
+    implementation "androidx.work:work-runtime-ktx:$version_work"
 }
