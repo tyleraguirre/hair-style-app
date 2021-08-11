@@ -73,6 +73,13 @@ dependencies {
     // Material.io
         implementation 'com.google.android.material:material:1.4.0'
 
+    // Moshi
+    implementation "com.squareup.moshi:moshi:$version_moshi"
+    implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
+
+    // RecyclerView
+    implementation "androidx.recyclerview:recyclerview:$version_recyclerview"
+
 
     //Retrofit - Deprecated plugins - No more required
     implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
