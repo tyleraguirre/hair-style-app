@@ -74,6 +74,17 @@ dependencies {
         implementation 'com.google.android.material:material:1.4.0'
 
 
+    //Retrofit - Deprecated plugins - No more required
+    implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
+
+
+    //Retrofit with Moshi Converter
+    implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
+
+    // Retrofit Coroutines Support - Deprecated - No more required
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$version_retrofit_coroutines_adapter"
+
+
     // Room and Lifecycle dependencies
         implementation "androidx.room:room-runtime:$version_room"
         kapt "androidx.room:room-compiler:$version_room"
