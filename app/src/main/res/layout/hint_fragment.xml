@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="hintViewModel"
+            type="com.example.hairstyleapp.hintpage.HintViewModel"
+            />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="409dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tabPaddingEnd="-1dp"
+            app:tabPaddingStart="-1dp">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/hairstyles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:text="HairStyles" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/favorites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@android:drawable/btn_star_big_on"
+                android:text="Favorites" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@android:drawable/ic_search_category_default"
+                android:text="Search" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@android:drawable/ic_dialog_map"
+                android:text="Map" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="67dp"
+            android:layout_height="54dp"
+            android:text="Find Hairstyles Here"
+            tools:layout_editor_absoluteX="25dp"
+            tools:layout_editor_absoluteY="555dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="58dp"
+            android:layout_height="67dp"
+            android:text="See Saved Favorites Here"
+            tools:layout_editor_absoluteX="128dp"
+            tools:layout_editor_absoluteY="542dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="52dp"
+            android:layout_height="68dp"
+            android:text="Search For Styles Here"
+            tools:layout_editor_absoluteX="233dp"
+            tools:layout_editor_absoluteY="542dp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="56dp"
+            android:layout_height="99dp"
+            android:text="Search For Nearby Salons and Barbers"
+            tools:layout_editor_absoluteX="329dp"
+            tools:layout_editor_absoluteY="525dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
