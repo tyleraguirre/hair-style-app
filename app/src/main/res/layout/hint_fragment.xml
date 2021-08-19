@@ -32,6 +32,7 @@
             android:layout_height="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:tabPaddingEnd="-1dp"
             app:tabPaddingStart="-1dp">
@@ -70,32 +71,45 @@
             android:layout_width="67dp"
             android:layout_height="54dp"
             android:text="Find Hairstyles Here"
-            tools:layout_editor_absoluteX="25dp"
-            tools:layout_editor_absoluteY="555dp" />
+            app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+            app:layout_constraintEnd_toStartOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="58dp"
             android:layout_height="67dp"
+            android:layout_marginStart="145dp"
+            android:layout_marginLeft="145dp"
+            android:layout_marginEnd="206dp"
+            android:layout_marginRight="206dp"
             android:text="See Saved Favorites Here"
-            tools:layout_editor_absoluteX="128dp"
-            tools:layout_editor_absoluteY="542dp" />
+            app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+            app:layout_constraintEnd_toEndOf="@+id/tabLayout"
+            app:layout_constraintStart_toStartOf="@+id/tabLayout" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="52dp"
             android:layout_height="68dp"
+            android:layout_marginStart="243dp"
+            android:layout_marginLeft="243dp"
+            android:layout_marginEnd="114dp"
+            android:layout_marginRight="114dp"
             android:text="Search For Styles Here"
-            tools:layout_editor_absoluteX="233dp"
-            tools:layout_editor_absoluteY="542dp" />
+            app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+            app:layout_constraintEnd_toEndOf="@+id/tabLayout"
+            app:layout_constraintStart_toStartOf="@+id/tabLayout" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="56dp"
             android:layout_height="99dp"
             android:text="Search For Nearby Salons and Barbers"
-            tools:layout_editor_absoluteX="329dp"
-            tools:layout_editor_absoluteY="525dp" />
+            app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.728"
+            app:layout_constraintStart_toEndOf="@+id/textView3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
