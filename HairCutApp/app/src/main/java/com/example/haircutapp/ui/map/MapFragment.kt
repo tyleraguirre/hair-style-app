@@ -10,12 +10,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.haircutapp.R
 import com.example.haircutapp.databinding.FragmentFavoritesBinding
+import com.example.haircutapp.databinding.FragmentMapBinding
 import com.example.haircutapp.ui.map.MapViewModel
 
 class MapFragment : Fragment() {
 
     private lateinit var mapViewModel: MapViewModel
-    private var _binding: FragmentFavoritesBinding? = null
+    private var _binding: FragmentMapBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -29,13 +30,13 @@ class MapFragment : Fragment() {
         mapViewModel =
             ViewModelProvider(this).get(MapViewModel::class.java)
 
-        _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
+        _binding = FragmentMapBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-//        val textView: TextView = binding.textMap
-//        mapViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
-//        })
+        val textView: TextView = binding.textMap
+        mapViewModel.text.observe(viewLifecycleOwner, Observer {
+            textView.text = it
+        })
         return root
     }
 
