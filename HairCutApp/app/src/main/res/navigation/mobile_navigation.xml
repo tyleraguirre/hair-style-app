@@ -22,7 +22,7 @@
         android:name="com.example.haircutapp.ui.search.SearchFragment"
         android:label="@string/title_search"
         tools:layout="@layout/fragment_search" />
-    
+
     <fragment
         android:id="@+id/navigation_map"
         android:name="com.example.haircutapp.ui.map.MapFragment"
