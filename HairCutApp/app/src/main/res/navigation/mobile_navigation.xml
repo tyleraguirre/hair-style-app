@@ -6,20 +6,27 @@
     app:startDestination="@+id/navigation_home">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.haircutapp.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_styles"
+        android:name="com.example.haircutapp.ui.styles.StylesFragment"
+        android:label="@string/title_styles"
+        tools:layout="@layout/fragment_styles" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.haircutapp.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_favorites"
+        android:name="com.example.haircutapp.ui.favorites.FavoritesFragment"
+        android:label="@string/title_favorites"
+        tools:layout="@layout/fragment_favorites" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.haircutapp.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_search"
+        android:name="com.example.haircutapp.ui.search.SearchFragment"
+        android:label="@string/title_search"
+        tools:layout="@layout/fragment_search" />
+    
+    <fragment
+        android:id="@+id/navigation_map"
+        android:name="com.example.haircutapp.ui.map.MapFragment"
+        android:label="@string/title_map"
+        tools:layout="@layout/fragment_map"/>
+
 </navigation>
