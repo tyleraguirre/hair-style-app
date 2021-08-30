@@ -1,5 +1,6 @@
 package com.example.haircutapp.hairstylesdatabase
 
+import android.content.res.Resources
 import android.widget.ImageView
 import androidx.room.ColumnInfo
 import androidx.room.Entity
