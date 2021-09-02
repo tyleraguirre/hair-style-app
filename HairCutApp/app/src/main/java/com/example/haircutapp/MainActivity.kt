@@ -1,6 +1,7 @@
 package com.example.haircutapp
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -8,6 +9,10 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.haircutapp.databinding.ActivityMainBinding
+import java.io.BufferedReader
+import java.io.InputStream
+import java.io.InputStreamReader
+import java.nio.charset.Charset
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,5 +36,17 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val inputStream: InputStream = resources.openRawResource(R.raw.stylesdb)
+        val reader = BufferedReader(InputStreamReader(inputStream, Charset.forName("UTF-8")))
+        reader.readLines().forEach {
+
+            //get a string array of all items in this line
+            val items = it.split(",")
+
+            //do what you want with each item
+            Log.i("stylesDB", items.toString())
+        }
+
     }
 }

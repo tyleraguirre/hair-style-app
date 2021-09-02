@@ -1,0 +1,32 @@
+id,style,gender,length,image
+1,Crew Cut,male,short,_
+2,Undercut,male,short,_
+3,Fade,male,short,_
+4,Side Part,male,short,_
+5,Buzz Cut,male,short,_
+6,Caesar Cut,male,short,_
+7,French Crop,male,short,_
+8,Bro Flow,male,medium,_
+9,Pompadour,male,short,_
+10,Slicked Back,male,short,_
+11,Quiff,male,short,_
+12,Blowout,male,short,_
+13,Comb Over,male,short,_
+14,Faux Hawk,male,short,_
+15,Fringe,male,short,_
+16,Messy Waves,male,short,_
+17,Loose Waves,male,long,_
+18,Long and Straight,male,long,_
+19,Man Bun,male,medium,_
+20,Topknot,male,medium,_
+21,Waves,female,long,_
+22,Diana,female,medium,_
+23,Bob,female,medium,_
+24,Lob,female,medium,_
+25,Wob,female,medium,_
+26,Bangs,female,long,_
+27,Layers,female,medium,_
+28,Crop,female,medium,_
+29,Asymmetrical Cut,female,medium,_
+30,Chop,female,medium,_
+31,Tapered,female,short,_
