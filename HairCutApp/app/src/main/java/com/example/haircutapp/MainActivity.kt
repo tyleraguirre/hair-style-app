@@ -37,13 +37,12 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        // CSV functionality
         val inputStream: InputStream = resources.openRawResource(R.raw.stylesdb)
         val reader = BufferedReader(InputStreamReader(inputStream, Charset.forName("UTF-8")))
         reader.readLines().forEach {
-
             //get a string array of all items in this line
             val items = it.split(",")
-
             //do what you want with each item
             Log.i("stylesDB", items.toString())
         }
