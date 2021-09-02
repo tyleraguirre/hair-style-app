@@ -3,7 +3,7 @@ id,style,gender,length,image
 2,Undercut,male,short,_
 3,Fade,male,short,_
 4,Side Part,male,short,_
-5,Buzz Cut,male,short,_
+5,Buzz Cut,male,short,buzzcut_sv_m.png
 6,Caesar Cut,male,short,_
 7,French Crop,male,short,_
 8,Bro Flow,male,medium,_
@@ -12,7 +12,7 @@ id,style,gender,length,image
 11,Quiff,male,short,_
 12,Blowout,male,short,_
 13,Comb Over,male,short,_
-14,Faux Hawk,male,short,_
+14,Faux Hawk,male,short,fauxhawk_sv_m.png
 15,Fringe,male,short,_
 16,Messy Waves,male,short,_
 17,Loose Waves,male,long,_
