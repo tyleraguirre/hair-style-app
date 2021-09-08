@@ -1,4 +1,5 @@
 <resources>
+    <string name="google_map_api_key">AIzaSyCFjPPuFILLqpQq50uW-4OBAuOluJt6tD0</string>
     <string name="app_name">HairCutApp</string>
     <string name="title_styles">Styles</string>
     <string name="title_favorites">Favorites</string>
