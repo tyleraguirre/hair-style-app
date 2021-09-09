@@ -30,10 +30,6 @@ class StylesFragment : Fragment() {
         _binding = FragmentStylesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textStyles
-        stylesViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
         return root
     }
 
