@@ -36,9 +36,10 @@ tools:context=".ui.styles.StylesFragment">
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/styles_list"
+        android:id="@+id/styles_recyclerview"
         android:layout_width="409dp"
         android:layout_height="650dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
