@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.haircutapp.R
 import com.example.haircutapp.StylesAdapter
 import com.example.haircutapp.databinding.FragmentStylesBinding
@@ -35,6 +36,7 @@ class StylesFragment : Fragment() {
         val viewModelFactory = StylesViewModelFactory(dataSource, application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(StylesViewModel::class.java)
 
+
         viewModel.selectedStyle.observe(viewLifecycleOwner, Observer {
             it?.let { hairstyle ->
                 // Navigate to detail fragment
@@ -44,13 +46,18 @@ class StylesFragment : Fragment() {
             }
         })
 
+        val manager = GridLayoutManager(activity, 3)
+
         val adapter = StylesAdapter(viewModel)
+
+        binding.stylesRecyclerview.layoutManager = manager
 
         binding.stylesRecyclerview.adapter = adapter
 
         adapter.submitList(stylesList)
 
         return binding.root
+
     }
 }
 
