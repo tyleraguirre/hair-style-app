@@ -9,7 +9,11 @@
         android:id="@+id/navigation_styles"
         android:name="com.example.haircutapp.ui.styles.StylesFragment"
         android:label="@string/title_styles"
-        tools:layout="@layout/fragment_styles" />
+        tools:layout="@layout/fragment_styles" >
+        <action
+            android:id="@+id/action_navigation_styles_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_favorites"
@@ -28,5 +32,13 @@
         android:name="com.example.haircutapp.ui.map.MapFragment"
         android:label="@string/title_map"
         tools:layout="@layout/fragment_map"/>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.haircutapp.ui.detail.DetailFragment"
+        android:label="DetailFragment" >
+        <argument
+            android:name="hairstyle"
+            app:argType="com.example.haircutapp.hairstylesdatabase.Hairstyle" />
+    </fragment>
 
 </navigation>
