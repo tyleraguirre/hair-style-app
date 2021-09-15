@@ -35,18 +35,18 @@ object StylesObject {
         Hairstyle(2, "Pompadour", "Male", "Short", R.drawable.pompadour_sv_m),
         Hairstyle(3, "Quiff", "Male", "Short", R.drawable.quiff_sv_m),
         Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
-        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
-        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
-        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
-        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
-        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
-        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
-        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
-        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
-        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
-        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
-        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
-        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m)
+        Hairstyle(5, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(6, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(7, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(8, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(9, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(10, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(11, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(12, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(13, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(14, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(15, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(16, "placeholder", "Male", "Short", R.drawable.model_sv_m)
 
     )
 
