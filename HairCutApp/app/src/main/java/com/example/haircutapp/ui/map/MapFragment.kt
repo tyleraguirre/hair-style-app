@@ -11,7 +11,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.haircutapp.R
-import com.example.haircutapp.databinding.FragmentMapBinding
+//import com.example.haircutapp.databinding.FragmentMapBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -28,7 +28,7 @@ class MapFragment : Fragment() {
     private val callback = OnMapReadyCallback { googleMap ->
 
         viewLifecycleOwner.lifecycleScope.launch {
-            val zoomAmount = 15.0F
+            val zoomAmount = 13.5F
 
             val target = LatLng(37.09874769007267, -113.59165704074472)
             googleMap.addMarker(target.let { MarkerOptions().position(it).title(target.toString()) })
