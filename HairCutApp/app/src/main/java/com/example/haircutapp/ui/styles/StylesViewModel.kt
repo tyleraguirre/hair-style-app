@@ -34,7 +34,19 @@ object StylesObject {
         Hairstyle(1, "Buzzcut", "Male", "Short", R.drawable.buzzcut_sv_m),
         Hairstyle(2, "Pompadour", "Male", "Short", R.drawable.pompadour_sv_m),
         Hairstyle(3, "Quiff", "Male", "Short", R.drawable.quiff_sv_m),
-        Hairstyle(4, "Long and Straight", "Male", "Short", R.drawable.model_sv_m)
+        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m),
+        Hairstyle(4, "placeholder", "Male", "Short", R.drawable.model_sv_m)
 
     )
 
