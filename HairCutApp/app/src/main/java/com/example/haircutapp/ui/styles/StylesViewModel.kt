@@ -27,12 +27,14 @@ class StylesViewModel(
     }
 }
 
-object Styles {
+object StylesObject {
 
     val listOfStyles = mutableListOf<Hairstyle>(
         Hairstyle(0, "Fauxhawk", "Male", "Short", R.drawable.fauxhawk_sv_m),
-        Hairstyle(1, "Buzzcut", "Male", "Short", R.drawable.buzzcut_sv_m)
-//            Hairstyle(0, "Pompadore", "Male", "Short", R.drawable.fauxhawk_sv_m)
+        Hairstyle(1, "Buzzcut", "Male", "Short", R.drawable.buzzcut_sv_m),
+        Hairstyle(2, "Pompadour", "Male", "Short", R.drawable.pompadour_sv_m),
+        Hairstyle(3, "Quiff", "Male", "Short", R.drawable.quiff_sv_m),
+        Hairstyle(4, "Long and Straight", "Male", "Short", R.drawable.model_sv_m)
 
     )
 

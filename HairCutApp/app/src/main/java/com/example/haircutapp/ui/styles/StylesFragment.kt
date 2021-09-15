@@ -20,7 +20,7 @@ class StylesFragment : Fragment() {
     private lateinit var binding: FragmentStylesBinding
     private lateinit var viewModel: StylesViewModel
 
-    val stylesList = Styles.listOfStyles
+    val stylesList = StylesObject.listOfStyles
 
     override fun onCreateView(
         inflater: LayoutInflater,

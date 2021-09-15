@@ -46,7 +46,7 @@ class StylesAdapter(val viewModel: StylesViewModel): ListAdapter<Hairstyle, Styl
             var avatar = binding.styleImage
 
             moverName.text = item.styleName
-            avatar.setImageResource(R.drawable.fauxhawk_sv_m)
+            avatar.setImageResource(item.styleImage)
 
 
         }
