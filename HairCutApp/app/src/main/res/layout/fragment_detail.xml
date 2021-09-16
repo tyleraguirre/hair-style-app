@@ -11,16 +11,50 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <WebView
-            android:id="@+id/webview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <Button
+            android:id="@+id/about_this_style_button"
+            android:layout_width="350dp"
+            android:layout_height="51dp"
+            android:text="About This Style"
+            app:layout_constraintBottom_toTopOf="@+id/style_images_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_style_image" />
+
+        <ImageView
+            android:id="@+id/detail_style_image"
+            android:layout_width="351dp"
+            android:layout_height="327dp"
+            app:layout_constraintBottom_toTopOf="@+id/about_this_style_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_style_name"
+            app:srcCompat="@drawable/fauxhawk_sv_m" />
+
+        <Button
+            android:id="@+id/style_images_button"
+            android:layout_width="355dp"
+            android:layout_height="47dp"
+            android:layout_marginBottom="70dp"
+            android:text="Style Images"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/about_this_style_button" />
+
+        <TextView
+            android:id="@+id/detail_style_name"
+            android:layout_width="350dp"
+            android:layout_height="54dp"
+            android:text="FauxHawk"
+            app:layout_constraintBottom_toTopOf="@+id/detail_style_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.508"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
