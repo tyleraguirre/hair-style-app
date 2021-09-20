@@ -16,11 +16,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.haircutapp.databinding.ActivityMainBinding
+import com.example.haircutapp.dummydatabase.Dummy
+import com.example.haircutapp.hairstylesdatabase.Hairstyle
+import com.example.haircutapp.hairstylesdatabase.HairstyleDatabase
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
@@ -28,6 +32,7 @@ import java.nio.charset.Charset
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
@@ -39,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
+        checkFirstRun()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -70,5 +75,26 @@ class MainActivity : AppCompatActivity() {
             Log.i("stylesDB", items.toString())
         }
 
+    }
+
+    fun checkFirstRun() {
+        val sharedPrefs = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE)
+        val firstRun = sharedPrefs.getBoolean("first_run", true)
+
+        if (firstRun) {
+            lifecycleScope.launch {
+                forceDatabaseInit()
+            }
+            sharedPrefs.edit().putBoolean("first_run", false).apply()
+        }
+    }
+
+    fun forceDatabaseInit() {
+        val db = HairstyleDatabase.getInstance(this)
+
+        val dummy = Dummy(1, "dumbdumb")
+        lifecycleScope.launch {
+            db.dummyDatabaseDao.insert(dummy)
+        }
     }
 }

@@ -16,7 +16,7 @@ interface HairstyleDao {
     suspend fun update(style: Hairstyle)
 
     @Query("SELECT * FROM hairstyle_table WHERE hairstyleId = :key ")
-    fun get(key: Long): Hairstyle
+    suspend fun get(key: Long): Hairstyle
 
     @Query("SELECT * FROM hairstyle_table ORDER BY hairstyleId DESC")
     fun getAllHairstyles(): List<Hairstyle>
