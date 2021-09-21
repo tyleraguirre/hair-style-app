@@ -1,19 +1,17 @@
 package com.example.haircutapp.hairstylesdatabase
 
-import androidx.room.Dao
 import androidx.lifecycle.LiveData
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface HairstyleDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(style: Hairstyle)
 
     @Update
     suspend fun update(style: Hairstyle)
+
 
     @Query("SELECT * FROM hairstyle_table WHERE hairstyleId = :key ")
     suspend fun get(key: Long): Hairstyle

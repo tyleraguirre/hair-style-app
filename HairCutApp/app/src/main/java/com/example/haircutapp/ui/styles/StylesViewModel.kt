@@ -98,10 +98,10 @@ object StylesObject {
         Hairstyle(9, "placeholder", "Male", "Short",
             R.drawable.model_sv_m, "https://en.wikipedia.org/wiki/Main_Page",
             "https://www.pinterest.com/"),
-        Hairstyle(10, "placeholder", "Male", "Short",
+        Hairstyle(11, "placeholder", "Male", "Short",
             R.drawable.model_sv_m, "https://en.wikipedia.org/wiki/Main_Page",
             "https://www.pinterest.com/"),
-        Hairstyle(11, "placeholder", "Male", "Short",
+        Hairstyle(11,"placeholder", "Male", "Short",
             R.drawable.model_sv_m, "https://en.wikipedia.org/wiki/Main_Page",
             "https://www.pinterest.com/")
 

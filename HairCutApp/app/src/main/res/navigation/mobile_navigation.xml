@@ -22,12 +22,6 @@
         tools:layout="@layout/fragment_favorites" />
 
     <fragment
-        android:id="@+id/navigation_search"
-        android:name="com.example.haircutapp.ui.search.SearchFragment"
-        android:label="@string/title_search"
-        tools:layout="@layout/fragment_search" />
-
-    <fragment
         android:id="@+id/navigation_map"
         android:name="com.example.haircutapp.ui.map.MapFragment"
         android:label="@string/title_map"
