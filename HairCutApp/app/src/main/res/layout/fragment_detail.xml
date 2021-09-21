@@ -20,30 +20,17 @@
             android:layout_height="51dp"
             android:text="About This Style"
             app:layout_constraintBottom_toTopOf="@+id/style_images_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detail_style_image" />
+            app:layout_constraintTop_toBottomOf="@+id/detail_style_image"
+            tools:layout_editor_absoluteX="30dp" />
 
         <ImageView
             android:id="@+id/detail_style_image"
-            android:layout_width="351dp"
-            android:layout_height="327dp"
+            android:layout_width="251dp"
+            android:layout_height="254dp"
             app:layout_constraintBottom_toTopOf="@+id/about_this_style_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detail_style_name"
-            app:srcCompat="@drawable/fauxhawk_sv_m" />
-
-        <Button
-            android:id="@+id/style_images_button"
-            android:layout_width="355dp"
-            android:layout_height="47dp"
-            android:layout_marginBottom="70dp"
-            android:text="Style Images"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/about_this_style_button" />
+            app:srcCompat="@drawable/fauxhawk_sv_m"
+            tools:layout_editor_absoluteX="80dp" />
 
         <TextView
             android:id="@+id/detail_style_name"
@@ -51,10 +38,26 @@
             android:layout_height="54dp"
             android:text="FauxHawk"
             app:layout_constraintBottom_toTopOf="@+id/detail_style_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.508"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="30dp" />
+
+        <Button
+            android:id="@+id/style_images_button"
+            android:layout_width="355dp"
+            android:layout_height="47dp"
+            android:text="Style Images"
+            app:layout_constraintBottom_toTopOf="@+id/add_to_favorites_button"
+            app:layout_constraintTop_toBottomOf="@+id/about_this_style_button"
+            tools:layout_editor_absoluteX="28dp" />
+
+        <Button
+            android:id="@+id/add_to_favorites_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add To Favorites"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/style_images_button"
+            tools:layout_editor_absoluteX="117dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
