@@ -23,19 +23,37 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.coroutines.launch
 
+private lateinit var map: GoogleMap
+private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-class MapFragment : Fragment() {
-    private val callback = OnMapReadyCallback { googleMap ->
+class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListener {
+//    private val callback = OnMapReadyCallback { googleMap ->
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            val zoomAmount = 13.5F
+    override fun onMapReady(googleMap: GoogleMap) {
+        map = googleMap
 
-            val target = LatLng(37.09874769007267, -113.59165704074472)
-            googleMap.addMarker(target.let { MarkerOptions().position(it).title(target.toString()) })
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(target))
-            googleMap.animateCamera(CameraUpdateFactory.zoomTo(zoomAmount))
-        }
+//        googleMap.setPadding(0,0,0,0)
+
+
+        val location = LatLng(37.09887924093022, -113.59157344165415)
+        map.addMarker(MarkerOptions().position(location).title("I am here"))
+        map.moveCamera(CameraUpdateFactory.newLatLng(location))
+
+        map.getUiSettings().setZoomControlsEnabled(true)
+        map.setOnMarkerClickListener(this)
     }
+
+
+
+
+//            val zoomAmount = 12.0F
+
+//            val location = LatLng(37.09874769007267, -113.59165704074472)
+//            googleMap.addMarker(location.let { MarkerOptions().position(it).title(location.toString()) })
+//            googleMap.moveCamera(CameraUpdateFactory.newLatLng(location))
+//            googleMap.animateCamera(CameraUpdateFactory.zoomTo(zoomAmount))
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,10 +61,15 @@ class MapFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_map, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment?
-        mapFragment?.getMapAsync(callback)
+        val mapFragment =
+            childFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment?
+        mapFragment?.getMapAsync(this)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
     }
+
+    override fun onMarkerClick(p0: Marker?) = false
 }
 
