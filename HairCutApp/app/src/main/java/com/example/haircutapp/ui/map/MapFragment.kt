@@ -1,17 +1,18 @@
 package com.example.haircutapp.ui.map
 
 import android.content.pm.PackageManager
+import android.location.Address
 import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import com.example.haircutapp.R
 //import com.example.haircutapp.databinding.FragmentMapBinding
+import android.location.Geocoder
+import android.util.Log
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -21,7 +22,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import kotlinx.coroutines.launch
+import java.io.IOException
 
 private lateinit var map: GoogleMap
 private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -36,6 +37,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListen
         map.setOnMarkerClickListener(this)
 
         setUpMap()
+
     }
 
     private fun setUpMap() {
@@ -59,11 +61,40 @@ class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListen
         }
     }
     private fun placeMarkerOnMap(location: LatLng) {
-        // 1
+
         val markerOptions = MarkerOptions().position(location)
-        // 2
+
         map.addMarker(markerOptions)
+
+        val titleString = getAddress(location)
+        markerOptions.title(titleString)
+
+        print(titleString)
     }
+
+    private fun getAddress(latLng: LatLng): String {
+
+        val geocoder = Geocoder(context)
+        val addresses: List<Address>?
+        val address: Address?
+        var addressText = ""
+
+        try {
+            addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
+
+            if (null != addresses && !addresses.isNotEmpty()) {
+                address = addresses[0]
+                for (i in 0 until address.maxAddressLineIndex) {
+                    addressText += if (i == 0) address.getAddressLine(i) else "\n" + address.getAddressLine(i)
+                }
+            }
+        }
+        catch (e: IOException) {
+            Log.e("MapsFragment", e.localizedMessage)
+        }
+        return addressText
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -79,7 +110,6 @@ class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListen
             childFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment?
         mapFragment?.getMapAsync(this)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
-
     }
 
     companion object {
