@@ -25,34 +25,45 @@ import kotlinx.coroutines.launch
 
 private lateinit var map: GoogleMap
 private lateinit var fusedLocationClient: FusedLocationProviderClient
+private lateinit var lastLocation: Location
 
 class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListener {
-//    private val callback = OnMapReadyCallback { googleMap ->
 
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
-//        googleMap.setPadding(0,0,0,0)
-
-
-        val location = LatLng(37.09887924093022, -113.59157344165415)
-        map.addMarker(MarkerOptions().position(location).title("I am here"))
-        map.moveCamera(CameraUpdateFactory.newLatLng(location))
-
-        map.getUiSettings().setZoomControlsEnabled(true)
+        map.uiSettings.isZoomControlsEnabled = true
         map.setOnMarkerClickListener(this)
+
+        setUpMap()
     }
 
+    private fun setUpMap() {
+        if (ActivityCompat.checkSelfPermission(requireContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(requireActivity(),
+                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
+            return
+        }
 
+        map.isMyLocationEnabled = true
 
-
-//            val zoomAmount = 12.0F
-
-//            val location = LatLng(37.09874769007267, -113.59165704074472)
-//            googleMap.addMarker(location.let { MarkerOptions().position(it).title(location.toString()) })
-//            googleMap.moveCamera(CameraUpdateFactory.newLatLng(location))
-//            googleMap.animateCamera(CameraUpdateFactory.zoomTo(zoomAmount))
-
+        fusedLocationClient.lastLocation.addOnSuccessListener(requireActivity()) { location ->
+            // Got last known location. In some rare situations this can be null.
+            if (location != null) {
+                lastLocation = location
+                val currentLatLng = LatLng(location.latitude, location.longitude)
+                placeMarkerOnMap(currentLatLng)
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12f))
+            }
+        }
+    }
+    private fun placeMarkerOnMap(location: LatLng) {
+        // 1
+        val markerOptions = MarkerOptions().position(location)
+        // 2
+        map.addMarker(markerOptions)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,6 +79,11 @@ class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListen
             childFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment?
         mapFragment?.getMapAsync(this)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
+
+    }
+
+    companion object {
+        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
 
     override fun onMarkerClick(p0: Marker?) = false

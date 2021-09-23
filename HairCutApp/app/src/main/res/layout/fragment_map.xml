@@ -11,9 +11,6 @@
     android:layout_marginBottom="45dp"
     android:layout_marginTop="0dp"
     tools:context=".ui.map.MapFragment" />
-<!--    map:layout_constraintBottom_toBottomOf="parent"-->
-<!--    map:layout_constraintEnd_toEndOf="parent"-->
-<!--    map:layout_constraintStart_toStartOf="parent"-->
-<!--    map:layout_constraintTop_toTopOf="parent"-->
+
 
 
