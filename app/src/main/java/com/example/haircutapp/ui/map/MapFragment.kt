@@ -13,8 +13,12 @@ import com.example.haircutapp.R
 //import com.example.haircutapp.databinding.FragmentMapBinding
 import android.location.Geocoder
 import android.util.Log
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException
+import com.google.android.gms.common.GooglePlayServicesRepairableException
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.places.ui.PlacePicker
+//import com.google.android.gms.location.places.ui.PlacePicker
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -28,6 +32,7 @@ import java.io.IOException
 private lateinit var map: GoogleMap
 private lateinit var fusedLocationClient: FusedLocationProviderClient
 private lateinit var lastLocation: Location
+
 
 class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListener {
 
@@ -90,6 +95,17 @@ class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListen
         return addressText
     }
 
+    private fun loadPlacePicker() {
+        val builder = PlacePicker.IntentBuilder()
+
+        try {
+            startActivityForResult(builder.build(requireActivity()), PLACE_PICKER_REQUEST)
+        } catch (e: GooglePlayServicesRepairableException) {
+            e.printStackTrace()
+        } catch (e: GooglePlayServicesNotAvailableException) {
+            e.printStackTrace()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -97,6 +113,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListen
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_map, container, false)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -107,8 +124,10 @@ class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListen
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
     }
 
+
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
+        private const val PLACE_PICKER_REQUEST = 3
     }
 
     override fun onMarkerClick(p0: Marker?) = false
