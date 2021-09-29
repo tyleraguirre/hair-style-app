@@ -22,6 +22,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.android.synthetic.main.fragment_map.*
 import java.io.IOException
 
 private lateinit var map: GoogleMap
@@ -37,7 +38,6 @@ class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListen
         map.setOnMarkerClickListener(this)
 
         setUpMap()
-
     }
 
     private fun setUpMap() {
@@ -56,7 +56,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListen
                 lastLocation = location
                 val currentLatLng = LatLng(location.latitude, location.longitude)
                 placeMarkerOnMap(currentLatLng)
-                map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12f))
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
             }
         }
     }
@@ -64,30 +64,25 @@ class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListen
 
         val markerOptions = MarkerOptions().position(location)
 
-        map.addMarker(markerOptions)
-
         val titleString = getAddress(location)
         markerOptions.title(titleString)
+
+        map.addMarker(markerOptions)
 
         print(titleString)
     }
 
     private fun getAddress(latLng: LatLng): String {
 
-        val geocoder = Geocoder(context)
+        val geocoder = Geocoder(requireContext())
         val addresses: List<Address>?
         val address: Address?
         var addressText = ""
 
         try {
             addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
-
-            if (null != addresses && !addresses.isNotEmpty()) {
-                address = addresses[0]
-                for (i in 0 until address.maxAddressLineIndex) {
-                    addressText += if (i == 0) address.getAddressLine(i) else "\n" + address.getAddressLine(i)
-                }
-            }
+                    address = addresses[0]
+                    addressText += address.getAddressLine(0)
         }
         catch (e: IOException) {
             Log.e("MapsFragment", e.localizedMessage)
