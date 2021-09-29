@@ -1,5 +1,6 @@
 package com.example.haircutapp.ui.map
 
+import android.app.Activity.RESULT_OK
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Location
@@ -95,17 +96,7 @@ class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListen
         return addressText
     }
 
-    private fun loadPlacePicker() {
-        val builder = PlacePicker.IntentBuilder()
 
-        try {
-            startActivityForResult(builder.build(requireActivity()), PLACE_PICKER_REQUEST)
-        } catch (e: GooglePlayServicesRepairableException) {
-            e.printStackTrace()
-        } catch (e: GooglePlayServicesNotAvailableException) {
-            e.printStackTrace()
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -124,7 +115,16 @@ class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListen
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
     }
 
+    fun test(){
+        if (requestCode == PLACE_PICKER_REQUEST) {
 
+            val place = PlacePicker.getPlace(this,)
+            var addressText = place.name.toString()
+            addressText += "\n" + place.address.toString()
+            placeMarkerOnMap(place.latLng)
+
+        }
+    }
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
         private const val PLACE_PICKER_REQUEST = 3
