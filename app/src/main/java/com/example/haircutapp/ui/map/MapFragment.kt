@@ -14,6 +14,7 @@ import com.example.haircutapp.R
 //import com.example.haircutapp.databinding.FragmentMapBinding
 import android.location.Geocoder
 import android.util.Log
+import android.widget.SearchView
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.gms.common.GooglePlayServicesRepairableException
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -46,6 +47,16 @@ class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListen
         setUpMap()
     }
 
+    private val searchView = search_view
+
+    private var location =  searchView.query.toString()
+
+    private var searchAddressList = listOf<Address?>()
+
+    
+
+
+
     private fun setUpMap() {
         if (ActivityCompat.checkSelfPermission(requireContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -75,7 +86,6 @@ class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListen
 
         map.addMarker(markerOptions)
 
-        print(titleString)
     }
 
     private fun getAddress(latLng: LatLng): String {
@@ -115,16 +125,8 @@ class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListen
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
     }
 
-    fun test(){
-        if (requestCode == PLACE_PICKER_REQUEST) {
 
-            val place = PlacePicker.getPlace(this,)
-            var addressText = place.name.toString()
-            addressText += "\n" + place.address.toString()
-            placeMarkerOnMap(place.latLng)
 
-        }
-    }
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
         private const val PLACE_PICKER_REQUEST = 3
