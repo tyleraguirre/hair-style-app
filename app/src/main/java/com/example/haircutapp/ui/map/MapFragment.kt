@@ -47,15 +47,6 @@ class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListen
         setUpMap()
     }
 
-    private val searchView = search_view
-
-    private var location =  searchView.query.toString()
-
-    private var searchAddressList = listOf<Address?>()
-
-    
-
-
 
     private fun setUpMap() {
         if (ActivityCompat.checkSelfPermission(requireContext(),
@@ -124,6 +115,27 @@ class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListen
         mapFragment?.getMapAsync(this)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
     }
+
+
+    private fun searchQuery() {
+        val searchView = search_view
+        var location = searchView.query.toString()
+        var searchAddressList = listOf<Address?>()
+
+        if (location != null || location.equals("")) {
+            val geocoder: Geocoder
+
+            try {
+                searchAddressList = geocoder.getFromLocationName(location,1)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            searchAddressList.get(0)
+            searchAddressList.
+        }
+    }
+
+
 
 
 
