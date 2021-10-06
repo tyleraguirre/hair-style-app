@@ -1,39 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
 
-
-<data>
-<variable
-    name="mapFragment"
-    type="com.example.haircutapp.ui.map.MapFragmentKt"/>
-</data>
-
-<RelativeLayout
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
-
-<fragment
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/map_fragment"
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="45dp"
     android:layout_marginTop="0dp"
-    tools:context=".ui.map.MapFragment" />
-    
-    <fragment
-        android:id="@+id/search_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"/>
+    android:layout_marginBottom="45dp"
+    tools:context=".ui.map.MapFragment" >
 
-    
-    </RelativeLayout>
-</layout>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="340dp"
+        android:layout_height="51dp"
+        android:text="Button"
+        map:layout_constraintBottom_toBottomOf="parent"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="254dp"
+        android:layout_height="62dp"
+        android:text="@string/map_fragment_message"
+        map:layout_constraintBottom_toTopOf="@+id/button"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
