@@ -76,4 +76,3 @@ class MapFragment : Fragment() {
         activity?.startActivity(locationIntent)
     }
 }
-
