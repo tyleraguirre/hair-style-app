@@ -1,5 +1,7 @@
 package com.example.haircutapp.ui.map
 
+import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Location
@@ -12,6 +14,7 @@ import androidx.fragment.app.Fragment
 import com.example.haircutapp.R
 //import com.example.haircutapp.databinding.FragmentMapBinding
 import android.location.Geocoder
+import android.net.Uri
 import android.util.Log
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.gms.common.GooglePlayServicesRepairableException
@@ -27,85 +30,16 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_map.*
+import kotlinx.coroutines.Dispatchers.Main
 import java.io.IOException
 
-private lateinit var map: GoogleMap
-private lateinit var fusedLocationClient: FusedLocationProviderClient
-private lateinit var lastLocation: Location
 
+class MapFragment : Fragment() {
 
-class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListener {
-
-    override fun onMapReady(googleMap: GoogleMap) {
-        map = googleMap
-
-        map.uiSettings.isZoomControlsEnabled = true
-        map.setOnMarkerClickListener(this)
-
-        setUpMap()
-    }
-
-    private fun setUpMap() {
-        if (ActivityCompat.checkSelfPermission(requireContext(),
-                android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(requireActivity(),
-                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
-            return
-        }
-
-        map.isMyLocationEnabled = true
-
-        fusedLocationClient.lastLocation.addOnSuccessListener(requireActivity()) { location ->
-            // Got last known location. In some rare situations this can be null.
-            if (location != null) {
-                lastLocation = location
-                val currentLatLng = LatLng(location.latitude, location.longitude)
-                placeMarkerOnMap(currentLatLng)
-                map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
-            }
-        }
-    }
-    private fun placeMarkerOnMap(location: LatLng) {
-
-        val markerOptions = MarkerOptions().position(location)
-
-        val titleString = getAddress(location)
-        markerOptions.title(titleString)
-
-        map.addMarker(markerOptions)
-
-        print(titleString)
-    }
-
-    private fun getAddress(latLng: LatLng): String {
-
-        val geocoder = Geocoder(requireContext())
-        val addresses: List<Address>?
-        val address: Address?
-        var addressText = ""
-
-        try {
-            addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
-                    address = addresses[0]
-                    addressText += address.getAddressLine(0)
-        }
-        catch (e: IOException) {
-            Log.e("MapsFragment", e.localizedMessage)
-        }
-        return addressText
-    }
-
-    private fun loadPlacePicker() {
-        val builder = PlacePicker.IntentBuilder()
-
-        try {
-            startActivityForResult(builder.build(requireActivity()), PLACE_PICKER_REQUEST)
-        } catch (e: GooglePlayServicesRepairableException) {
-            e.printStackTrace()
-        } catch (e: GooglePlayServicesNotAvailableException) {
-            e.printStackTrace()
-        }
-    }
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private var lastLocation: Location? = null
+    private lateinit var uri: Uri
+    private lateinit var locationIntent: Intent
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -113,23 +47,33 @@ class MapFragment : Fragment(), OnMapReadyCallback,GoogleMap.OnMarkerClickListen
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_map, container, false)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val mapFragment =
-            childFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment?
-        mapFragment?.getMapAsync(this)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        )
+            fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+                if (location != null) {
+                    lastLocation = location
+                }
+            }
+        launchIntent()
     }
 
+    fun launchIntent() {
 
-    companion object {
-        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
-        private const val PLACE_PICKER_REQUEST = 3
+        uri = Uri.parse("geo:${lastLocation?.latitude}, ${lastLocation?.longitude}")
+        locationIntent = Intent(Intent.ACTION_VIEW, uri)
+        locationIntent.setPackage("com.google.android.apps.maps")
+        activity?.startActivity(locationIntent)
     }
-
-    override fun onMarkerClick(p0: Marker?) = false
 }
 
