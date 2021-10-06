@@ -51,7 +51,7 @@ class MapFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -65,7 +65,9 @@ class MapFragment : Fragment() {
                     lastLocation = location
                 }
             }
-        launchIntent()
+        google_map_nav_button.setOnClickListener {
+            launchIntent()
+        }
     }
 
     fun launchIntent() {
