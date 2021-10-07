@@ -1,6 +1,7 @@
 package com.example.haircutapp.ui.detail
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -20,10 +22,18 @@ import com.example.haircutapp.hairstylesdatabase.HairstyleDao
 import com.example.haircutapp.hairstylesdatabase.HairstyleDatabase
 import kotlinx.android.synthetic.main.fragment_detail.*
 
-class DetailFragment : Fragment() {
+abstract class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailBinding
     private lateinit var viewModel: DetailViewModel
+
+    private val hairstyle: Hairstyle
+        get() {
+            hairstyle.aboutStyle
+            hairstyle.imagesOfStyle
+
+            return hairstyle
+        }
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -40,11 +50,27 @@ class DetailFragment : Fragment() {
         binding.lifecycleOwner = this
 
         about_this_style_button.setOnClickListener {
-            val intent: Intent
-            intent.setPackage("${HairstyleDao.}")
+            openWebPage("${hairstyle.aboutStyle}")
+        }
+
+        style_images_button.setOnClickListener {
+            openWebPage("${hairstyle.imagesOfStyle}")
+        }
+
+        add_to_favorites_button.setOnClickListener {
+            //need to have style get added to favorites fragment
+            //show a toast that the style has been added to fragment
+            Toast.LENGTH_LONG
         }
 
 
         return binding.root
+    }
+
+    fun openWebPage(url: String) {
+        val webPage: Uri = Uri.parse(url)
+        val intent = Intent(Intent.ACTION_VIEW, webPage)
+
+        activity?.startActivity(intent)
     }
 }

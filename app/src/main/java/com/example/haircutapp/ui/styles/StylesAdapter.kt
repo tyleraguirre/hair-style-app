@@ -1,17 +1,13 @@
 package com.example.haircutapp
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.haircutapp.databinding.ListItemHairstyleBinding
 import com.example.haircutapp.hairstylesdatabase.Hairstyle
 import com.example.haircutapp.ui.styles.StylesViewModel
-import kotlinx.android.synthetic.main.list_item_hairstyle.view.*
 
 
 class StylesAdapter(val viewModel: StylesViewModel): ListAdapter<Hairstyle, StylesAdapter.StylesViewHolder>(StylesListDiffCallback()) {
@@ -42,11 +38,11 @@ class StylesAdapter(val viewModel: StylesViewModel): ListAdapter<Hairstyle, Styl
                 viewModel.setHairstyle(item)
             }
 
-            var moverName = binding.styleName
-            var avatar = binding.styleImage
+            var styleName = binding.styleName
+            var styleImage = binding.styleImage
 
-            moverName.text = item.styleName
-            avatar.setImageResource(item.styleImage)
+            styleName.text = item.styleName
+            styleImage.setImageResource(item.styleImage)
 
 
         }

@@ -7,4 +7,5 @@
     <string name="women_button">Women</string>
     <string name="map_fragment_message">This button will navigate you to Google Maps to find local barbers/salons</string>
     <string name="map_fragment_button">Go to Google Maps</string>
+    <string name="style_screen_message">Current trendy mens hairstyles</string>
 </resources>
