@@ -12,9 +12,4 @@ id,style,gender,length,image
 11,Fringe,male,short,placeholder,https://en.wikipedia.org/wiki/Bangs_(hair),https://www.pinterest.com/silva0966/mens-fringe/
 12,Man Bun,male,medium,manbun_sv_m,https://en.wikipedia.org/wiki/Bun_(hairstyle),https://www.pinterest.com/genggam_pw/manbun/
 13,Topknot,male,medium,placeholder,https://en.wikipedia.org/wiki/Topknot,https://www.pinterest.com/tgo_eden/mens-top-knotman-bun/
-14,Diana,female,medium,placeholder,https://en.wikipedia.org/wiki/Bob_cut
-15,Lob,female,medium,placeholder,https://en.wikipedia.org/wiki/Lob_(haircut)
-16,Bangs,female,long,placeholder,https://en.wikipedia.org/wiki/Bangs_(hair)
-17,Layers,female,medium,placeholder,https://en.wikipedia.org/wiki/Layered_hair
-18,Crop,female,medium,placeholder,https://en.wikipedia.org/wiki/Pixie_cut
-19,Asymmetrical Cut,female,medium,placeholder,https://en.wikipedia.org/wiki/Asymmetric_cut
+
