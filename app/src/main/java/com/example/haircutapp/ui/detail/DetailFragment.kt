@@ -28,15 +28,17 @@ class DetailFragment : Fragment() {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_detail, container, false
         )
-
         val application = requireNotNull(this.activity).application
         val dataSource = HairstyleDatabase.getInstance(application).HairstyleDao
 
         val viewModelFactory = DetailViewModelFactory(dataSource, application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(DetailViewModel::class.java)
 
-
         binding.lifecycleOwner = this
+
+        about_this_style_button.setOnClickListener {
+
+        }
 
 
         return binding.root
