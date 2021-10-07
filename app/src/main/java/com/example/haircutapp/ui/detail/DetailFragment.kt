@@ -1,5 +1,6 @@
 package com.example.haircutapp.ui.detail
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +15,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.haircutapp.R
 import com.example.haircutapp.databinding.FragmentDetailBinding
+import com.example.haircutapp.hairstylesdatabase.Hairstyle
+import com.example.haircutapp.hairstylesdatabase.HairstyleDao
 import com.example.haircutapp.hairstylesdatabase.HairstyleDatabase
 import kotlinx.android.synthetic.main.fragment_detail.*
 
@@ -37,7 +40,8 @@ class DetailFragment : Fragment() {
         binding.lifecycleOwner = this
 
         about_this_style_button.setOnClickListener {
-
+            val intent: Intent
+            intent.setPackage("${HairstyleDao.}")
         }
 
 
