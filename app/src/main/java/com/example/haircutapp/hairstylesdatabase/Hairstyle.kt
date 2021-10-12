@@ -6,8 +6,10 @@ import android.widget.ImageView
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.Gson
 import kotlinx.android.parcel.Parcelize
 import java.net.URL
+
 
 @Parcelize
 @Entity(tableName = "hairstyle_table")
