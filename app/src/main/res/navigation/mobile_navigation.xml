@@ -29,7 +29,7 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.haircutapp.ui.detail.DetailFragment"
-        android:label="DetailFragment" >
+        android:label="DetailFragment">
         <argument
             android:name="hairstyle"
             app:argType="com.example.haircutapp.hairstylesdatabase.Hairstyle" />
