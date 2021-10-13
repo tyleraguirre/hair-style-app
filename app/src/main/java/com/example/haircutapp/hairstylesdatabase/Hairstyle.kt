@@ -1,14 +1,13 @@
 package com.example.haircutapp.hairstylesdatabase
 
-import android.content.res.Resources
 import android.os.Parcelable
-import android.widget.ImageView
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverter
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import kotlinx.android.parcel.Parcelize
-import java.net.URL
 
 
 @Parcelize
