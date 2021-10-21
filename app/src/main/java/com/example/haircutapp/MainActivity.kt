@@ -1,6 +1,5 @@
 package com.example.haircutapp
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -10,29 +9,33 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.haircutapp.databinding.ActivityMainBinding
-import com.example.haircutapp.gson.Repository
 import com.example.haircutapp.gson.RetroFitInstance
+import com.example.haircutapp.hairstylesdatabase.Hairstyle
+import com.example.haircutapp.hairstylesdatabase.HairstyleDao
 import com.example.haircutapp.hairstylesdatabase.HairstyleDatabase
-import java.io.BufferedReader
-import java.io.InputStream
-import java.io.InputStreamReader
-import java.nio.charset.Charset
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.GenericTypeIndicator
+import com.google.firebase.database.ktx.getValue
 import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var database: DatabaseReference
+
     companion object {
         const val TAG = "MainActivity"
     }
+
 
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        getDatabase()
+//        getDatabase()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -52,39 +55,40 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        // CSV functionality
-        val inputStream: InputStream = resources.openRawResource(R.raw.stylesdb)
-        val reader = BufferedReader(InputStreamReader(inputStream, Charset.forName("UTF-8")))
-        reader.readLines().forEach {
-            //get a string array of all items in this line
-            val items = it.split(",")
-            //do what you want with each item
-            Log.i("stylesDB", items.toString())
-        }
+//        readData()
+        fetchDataAndStore()
 
+    }
+    fun fetchDataAndStore() {
+        val styleList = listOf("broflow","buzzcut","caesarcut","combover","crewcut","fade","fauxhawk","fringe","manbun","pompadour",
+        "quiff","topknot","undercut")
+
+        database = FirebaseDatabase.getInstance("https://hairstyle-api-e5fc7-default-rtdb.firebaseio.com/").getReference("hairstyles")
+
+        var hairstylesList = mutableListOf<Hairstyle>()
+
+        for (style in styleList) {
+            database.child("$style").get().addOnSuccessListener { data ->
+                var keys = data.key
+                data.value
+                data.toString()
+                keys.toString()
+                Log.i("TEST","$data")
+               val myObject = data.getValue(Hairstyle::class.java)
+                Log.i("$TAG", "this is the $myObject")
+            }
+        }
+        forceDatabaseInit()
     }
 
 
-    fun getDatabase() {
-//        val sharedPrefs = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE)
-//        val firstRun = sharedPrefs.getBoolean("first_run", true)
+    fun forceDatabaseInit() {
+        val db = HairstyleDatabase.getInstance(this)
 
-            lifecycleScope.launch {
-                val repository = Repository()
+//        val data = readData()
 
-                val response = repository.getStyles()
-
-                val test = RetroFitInstance.readData()
-
-
-                Log.i("$TAG", "${test}")
-//                if (response.isSuccessful) {
-//                    Log.i("styles", "styles is ${response.body()}")
-//                    println("${response.body()}")
-//                } else {
-//                    Log.i("styles", "Not successful")
-//                }
-            }
-//            sharedPrefs.edit().putBoolean("first_run", false).apply()
+        lifecycleScope.launch {
+//            db.HairstyleDao.insert(data)
+        }
         }
     }

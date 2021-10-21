@@ -7,14 +7,11 @@ import com.google.firebase.database.FirebaseDatabase
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-private lateinit var database: DatabaseReference
 
 object RetroFitInstance {
     val DATABASE_URL = "https://hairstyle-api-e5fc7-default-rtdb.firebaseio.com/"
 
     const val TAG = "RetroFitInstance"
-
-//    val styles: String = ""
 
     private val retrofit by lazy {
         Retrofit.Builder()
@@ -25,10 +22,5 @@ object RetroFitInstance {
     val api: HairstyleApi by lazy {
         retrofit.create(HairstyleApi::class.java)
     }
-     fun readData() {
-        database = FirebaseDatabase.getInstance("https://hairstyle-api-e5fc7-default-rtdb.firebaseio.com/").getReference("hairstyles")
-        database.child("undercut").get().addOnSuccessListener { data ->
-            Log.i(TAG, "Here is the $data")
-        }
-    }
+
 }

@@ -10,7 +10,7 @@ import retrofit2.http.Url
 
 interface HairstyleApi {
 
-    @GET("hairstyles/broflow.json")
+    @GET("hairstyles")
     suspend fun getStyles(): Response<Hairstyle>
 }
 

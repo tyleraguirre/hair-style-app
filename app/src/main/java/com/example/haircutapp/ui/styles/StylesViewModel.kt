@@ -65,47 +65,4 @@ class StylesViewModel(
     }
 }
 
-//object StylesObject {
-//
-//    val listOfHairStyles = mutableListOf<Hairstyle>(
-//        Hairstyle(0, "Fauxhawk", "Male", "Short",
-//            R.drawable.fauxhawk_sv_m, "https://en.wikipedia.org/wiki/Mohawk_hairstyle#Fauxhawk_variants",
-//            "https://www.pinterest.com/menshairtips/faux-hawk-hairstyle/"),
-//        Hairstyle(1, "Buzzcut", "Male", "Short",
-//            R.drawable.buzzcut_sv_m, "https://en.wikipedia.org/wiki/Buzz_cut",
-//        "https://www.pinterest.com/jambobimal/mens-hair-style-buzz-cut/"),
-//        Hairstyle(2, "Pompadour", "Male", "Short",
-//            R.drawable.pompadour_sv_m, "https://en.wikipedia.org/wiki/Pompadour_(hairstyle)",
-//            "https://www.pinterest.com/barbinccom/mens-pompadours/"),
-//        Hairstyle(3, "Quiff", "Male", "Short",
-//            R.drawable.quiff_sv_m, "https://en.wikipedia.org/wiki/Quiff",
-//            "https://www.pinterest.com/haircutinspirat/mens-quiff-hairstyles/"),
-//        Hairstyle(4, "Man Bun", "Male", "Long",
-//            R.drawable.manbun_sv_m, "https://en.wikipedia.org/wiki/Bun_(hairstyle)",
-//            "https://www.pinterest.com/menshairtips/man-bun-hairstyle/"),
-//        Hairstyle(5, "placeholder", "Male", "Short",
-//            R.drawable.model_sv_m, "https://en.wikipedia.org/wiki/Main_Page",
-//            "https://www.pinterest.com/"),
-//        Hairstyle(6, "placeholder", "Male", "Short",
-//            R.drawable.model_sv_m, "https://en.wikipedia.org/wiki/Main_Page",
-//            "https://www.pinterest.com/"),
-//        Hairstyle(7, "placeholder", "Male", "Short",
-//            R.drawable.model_sv_m, "https://en.wikipedia.org/wiki/Main_Page",
-//            "https://www.pinterest.com/"),
-//        Hairstyle(8, "placeholder", "Male", "Short",
-//            R.drawable.model_sv_m, "https://en.wikipedia.org/wiki/Main_Page",
-//            "https://www.pinterest.com/"),
-//        Hairstyle(9, "placeholder", "Male", "Short",
-//            R.drawable.model_sv_m, "https://en.wikipedia.org/wiki/Main_Page",
-//            "https://www.pinterest.com/"),
-//        Hairstyle(11, "placeholder", "Male", "Short",
-//            R.drawable.model_sv_m, "https://en.wikipedia.org/wiki/Main_Page",
-//            "https://www.pinterest.com/"),
-//        Hairstyle(11,"placeholder", "Male", "Short",
-//            R.drawable.model_sv_m, "https://en.wikipedia.org/wiki/Main_Page",
-//            "https://www.pinterest.com/")
-//
-//    )
-
-//}
 
