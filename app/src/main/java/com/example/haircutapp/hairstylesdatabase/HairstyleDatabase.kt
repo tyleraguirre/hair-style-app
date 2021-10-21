@@ -4,15 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.haircutapp.dummydatabase.Dummy
-import com.example.haircutapp.dummydatabase.DummyDatabaseDao
 
-@Database(entities = [Hairstyle::class, Dummy::class], version = 1, exportSchema = false)
+@Database(entities = [Hairstyle::class], version = 1, exportSchema = false)
 abstract class HairstyleDatabase : RoomDatabase() {
 
     abstract val HairstyleDao: HairstyleDao
 
-    abstract val dummyDatabaseDao: DummyDatabaseDao
 
     companion object {
 

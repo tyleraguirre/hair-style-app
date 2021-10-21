@@ -20,7 +20,7 @@ class StylesFragment : Fragment() {
     private lateinit var binding: FragmentStylesBinding
     private lateinit var viewModel: StylesViewModel
 
-    private val stylesList = StylesObject.listOfHairStyles
+//    private val stylesList = StylesObject.listOfHairStyles
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,7 +54,7 @@ class StylesFragment : Fragment() {
 
         binding.stylesRecyclerview.adapter = adapter
 
-        adapter.submitList(stylesList)
+//        adapter.submitList(stylesList)
 
         return binding.root
 

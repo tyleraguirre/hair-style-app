@@ -1,50 +1,38 @@
 package com.example.haircutapp
 
-import android.Manifest
-import android.app.AlertDialog
-import android.app.Dialog
-import android.content.ContentValues.TAG
 import android.content.Context
-import android.content.DialogInterface
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.location.LocationManager
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.haircutapp.databinding.ActivityMainBinding
-import com.example.haircutapp.dummydatabase.Dummy
-import com.example.haircutapp.hairstylesdatabase.Hairstyle
+import com.example.haircutapp.gson.Repository
+import com.example.haircutapp.gson.RetroFitInstance
 import com.example.haircutapp.hairstylesdatabase.HairstyleDatabase
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.nio.charset.Charset
-import com.google.android.gms.common.ConnectionResult
-import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    companion object {
+        const val TAG = "MainActivity"
+    }
 
-    private var myLocationPermissionGranted = false
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        checkFirstRun()
+        getDatabase()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -76,24 +64,27 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun checkFirstRun() {
-        val sharedPrefs = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE)
-        val firstRun = sharedPrefs.getBoolean("first_run", true)
 
-        if (firstRun) {
+    fun getDatabase() {
+//        val sharedPrefs = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE)
+//        val firstRun = sharedPrefs.getBoolean("first_run", true)
+
             lifecycleScope.launch {
-                forceDatabaseInit()
+                val repository = Repository()
+
+                val response = repository.getStyles()
+
+                val test = RetroFitInstance.readData()
+
+
+                Log.i("$TAG", "${test}")
+//                if (response.isSuccessful) {
+//                    Log.i("styles", "styles is ${response.body()}")
+//                    println("${response.body()}")
+//                } else {
+//                    Log.i("styles", "Not successful")
+//                }
             }
-            sharedPrefs.edit().putBoolean("first_run", false).apply()
+//            sharedPrefs.edit().putBoolean("first_run", false).apply()
         }
     }
-
-    fun forceDatabaseInit() {
-        val db = HairstyleDatabase.getInstance(this)
-
-        val dummy = Dummy(1, "dumbdumb")
-        lifecycleScope.launch {
-            db.dummyDatabaseDao.insert(dummy)
-        }
-    }
-}
