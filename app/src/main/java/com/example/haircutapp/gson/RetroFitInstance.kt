@@ -26,8 +26,8 @@ object RetroFitInstance {
         retrofit.create(HairstyleApi::class.java)
     }
      fun readData() {
-        database = FirebaseDatabase.getInstance().getReference("hairstyle-api-e5fc7-default-rtdbfirebaseio")
-        database.child("hairstyles").child("broflow").child("aboutStyle").get().addOnSuccessListener { data ->
+        database = FirebaseDatabase.getInstance("https://hairstyle-api-e5fc7-default-rtdb.firebaseio.com/").getReference("hairstyles")
+        database.child("undercut").get().addOnSuccessListener { data ->
             Log.i(TAG, "Here is the $data")
         }
     }
