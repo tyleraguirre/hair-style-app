@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        getDatabase()
+        getDatabase()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-//        readData()
+        readData()
         fetchDataAndStore()
 
     }
@@ -85,10 +85,10 @@ class MainActivity : AppCompatActivity() {
     fun forceDatabaseInit() {
         val db = HairstyleDatabase.getInstance(this)
 
-//        val data = readData()
+        val data = readData()
 
         lifecycleScope.launch {
-//            db.HairstyleDao.insert(data)
+            db.HairstyleDao.insert(data)
         }
         }
     }

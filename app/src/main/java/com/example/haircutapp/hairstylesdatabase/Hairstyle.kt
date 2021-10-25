@@ -15,7 +15,7 @@ data class Hairstyle(
     var hairstyleId: Long = 0L,
 
     @ColumnInfo(name = "style_name")
-    val styleName: String,
+    val styleName: String = "",
 
 //    @ColumnInfo(name = "gender")
 //    var gender: String,
@@ -24,12 +24,12 @@ data class Hairstyle(
 //    var styleLength: String,
 
     @ColumnInfo(name = "style_image")
-    var styleImage: Int?,
+    var styleImage: Int? = null,
 
     @ColumnInfo(name = "about_style")
-    val aboutStyle: String,
+    val aboutStyle: String = "",
 
     @ColumnInfo(name = "images_of_style")
-    val imagesOfStyle: String
+    val imagesOfStyle: String = ""
 
     ) : Parcelable
