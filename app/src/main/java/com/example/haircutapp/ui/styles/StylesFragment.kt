@@ -20,8 +20,6 @@ class StylesFragment : Fragment() {
     private lateinit var binding: FragmentStylesBinding
     private lateinit var viewModel: StylesViewModel
 
-    private val stylesList = StylesObject.listOfHairStyles
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,6 +34,10 @@ class StylesFragment : Fragment() {
         val viewModelFactory = StylesViewModelFactory(dataSource, application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(StylesViewModel::class.java)
 
+        val manager = GridLayoutManager(activity, 3)
+
+        val adapter = StylesAdapter(viewModel)
+
 
         viewModel.selectedStyle.observe(viewLifecycleOwner, Observer {
             it?.let { hairstyle ->
@@ -46,15 +48,13 @@ class StylesFragment : Fragment() {
             }
         })
 
-        val manager = GridLayoutManager(activity, 3)
-
-        val adapter = StylesAdapter(viewModel)
+        viewModel.hairstylesList.observe(viewLifecycleOwner, Observer { hairstyleList ->
+            adapter.submitList(hairstyleList)
+        })
 
         binding.stylesRecyclerview.layoutManager = manager
 
         binding.stylesRecyclerview.adapter = adapter
-
-        adapter.submitList(stylesList)
 
         return binding.root
 
