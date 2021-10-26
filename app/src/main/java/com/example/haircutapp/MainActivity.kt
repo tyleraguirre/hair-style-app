@@ -42,8 +42,16 @@ class MainActivity : AppCompatActivity() {
 //        readData()
 //        fetchDataAndStore()
     }
+<<<<<<< Updated upstream
 
 //    fun forceDatabaseInit() {
 //        val db = HairstyleDatabase
 //    }
 //}
+=======
+}
+//
+//    fun forceDatabaseInit() {
+//        val db = HairstyleDatabase
+//    }
+>>>>>>> Stashed changes

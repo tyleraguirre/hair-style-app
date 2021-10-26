@@ -18,8 +18,6 @@ class StylesViewModel(
     val database: HairstyleDao,
     application: Application) : ViewModel() {
 
-//    private var viewModelJob = Job()
-
     private var allHairstylesList = mutableListOf<Hairstyle>()
 
     private var loopCount = 0
@@ -28,15 +26,21 @@ class StylesViewModel(
         val TAG = "TAG"
     }
 
+<<<<<<< Updated upstream
     fun setHairstyle(hairstyle: Hairstyle) {
         _selectedStyle.value = hairstyle
     }
 
+=======
+>>>>>>> Stashed changes
     private val _selectedStyle = MutableLiveData<Hairstyle?>()
     val selectedStyle: LiveData<Hairstyle?>
         get() = _selectedStyle
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     init {
         fetchDataAndStore()
     }
