@@ -19,6 +19,7 @@
             android:id="@+id/styles_recyclerview"
             android:layout_width="408dp"
             android:layout_height="504dp"
+            android:layout_marginBottom="50dp"
             android:scrollbars="vertical"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"

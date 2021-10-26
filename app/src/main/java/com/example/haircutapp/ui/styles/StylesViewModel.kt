@@ -18,99 +18,97 @@ class StylesViewModel(
     val database: HairstyleDao,
     application: Application) : ViewModel() {
 
-    private var viewModelJob = Job()
+//    private var viewModelJob = Job()
 
     private var allHairstylesList = mutableListOf<Hairstyle>()
 
-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    private var loopCount = 0
+
+    companion object TAG {
+        val TAG = "TAG"
+    }
+
+
+//    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     private val _selectedStyle = MutableLiveData<Hairstyle?>()
     val selectedStyle: LiveData<Hairstyle?>
         get() = _selectedStyle
 
-    private val _arrayOfStyles = MutableLiveData<List<Hairstyle?>>()
-    val arrayOfStyles: LiveData<List<Hairstyle?>>
-        get() = _arrayOfStyles
+//    private val _arrayOfStyles = MutableLiveData<List<Hairstyle?>>()
+//    val arrayOfStyles: LiveData<List<Hairstyle?>>
+//        get() = _arrayOfStyles
 
     init {
         fetchDataAndStore()
     }
-
-
     fun navigationComplete() {
         _selectedStyle.value = null
     }
-
-    private suspend fun insert(style: Hairstyle) {
-        withContext(Dispatchers.IO) {
-            database.insert(style)
-        }
-    }
-
-    private suspend fun getStyleFromDataBase(): Hairstyle? {
-        return withContext(Dispatchers.IO) {
-            var style = database.get(0)
-            style
-        }
-    }
-
-    //    private val reference: MainActivity()
+//    private suspend fun insert(style: Hairstyle) {
+//        withContext(Dispatchers.IO) {
+//            database.insert(style)
+//        }
+//    }
+//    private suspend fun getStyleFromDataBase(): Hairstyle? {
+//        return withContext(Dispatchers.IO) {
+//            var style = database.get(0)
+//            style
+//        }
+//    }
     private lateinit var fbdatabase: DatabaseReference
 
     private val _hairstylesList = MutableLiveData<List<Hairstyle>>()
     val hairstylesList: LiveData<List<Hairstyle>>
         get() = _hairstylesList
 
-    companion object {
-        val TAG = "TAG"
-    }
-
     fun fetchDataAndStore() {
-        val styleList = listOf(
-            "broflow",
-            "buzzcut",
-            "caesarcut",
-            "combover",
-            "crewcut",
-            "fade",
-            "fauxhawk",
-            "fringe",
-            "manbun",
-            "pompadour",
-            "quiff",
-            "topknot",
-            "undercut"
-        )
 
         fbdatabase =
             FirebaseDatabase.getInstance("https://hairstyle-api-e5fc7-default-rtdb.firebaseio.com/")
                 .getReference("hairstyles")
 
-
-        for (style in styleList) {
+        for (style in StyleList.styleList) {
             fbdatabase.child("$style").get().addOnSuccessListener { data ->
-                var keys = data.key
-                data.value
-                data.toString()
-                keys.toString()
-//                Log.i("${TAG}", "$data")
                 val myObject = data.getValue(Hairstyle::class.java)
                 val styleName = myObject?.styleName
                 val imagesOfStyle = myObject?.imagesOfStyle
                 val aboutStyle = myObject?.aboutStyle
                 var hairstyle = Hairstyle(0, styleName!!, null, aboutStyle!!, imagesOfStyle!!)
                 processData(hairstyle)
-//                Log.i("MainActivity", "this is the $myObject")
+                loopCount += 1
+                Log.i("${TAG.TAG}", "$loopCount")
             }
         }
     }
     fun processData(hairstyle: Hairstyle) {
         allHairstylesList.add(hairstyle)
-        passToLiveData()
+        if (loopCount == StyleList.styleList.size - 1) {
+    passToLiveData()
+    loopCount = 0
+}
     }
     fun passToLiveData() {
         _hairstylesList.value = allHairstylesList
     }
+}
+
+object StyleList {
+    val styleList = listOf(
+        "broflow",
+        "buzzcut",
+        "caesarcut",
+        "combover",
+        "crewcut",
+        "fade",
+        "fauxhawk",
+        "fringe",
+        "manbun",
+        "pompadour",
+        "quiff",
+        "topknot",
+        "undercut"
+    )
 }
 
 //DataSnapshot { key = broflow, value = {aboutStyle=https://en.wikipedia.org/wiki/Wings_(haircut), styleName=Bro Flow, imagesOfStyle=https://www.pinterest.com/bartogilvie/bro-flow-hairstyles-men/} }
