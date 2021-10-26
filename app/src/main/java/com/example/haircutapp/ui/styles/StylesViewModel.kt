@@ -28,16 +28,14 @@ class StylesViewModel(
         val TAG = "TAG"
     }
 
-
-//    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    fun setHairstyle(hairstyle: Hairstyle) {
+        _selectedStyle.value = hairstyle
+    }
 
     private val _selectedStyle = MutableLiveData<Hairstyle?>()
     val selectedStyle: LiveData<Hairstyle?>
         get() = _selectedStyle
 
-//    private val _arrayOfStyles = MutableLiveData<List<Hairstyle?>>()
-//    val arrayOfStyles: LiveData<List<Hairstyle?>>
-//        get() = _arrayOfStyles
 
     init {
         fetchDataAndStore()
@@ -45,17 +43,7 @@ class StylesViewModel(
     fun navigationComplete() {
         _selectedStyle.value = null
     }
-//    private suspend fun insert(style: Hairstyle) {
-//        withContext(Dispatchers.IO) {
-//            database.insert(style)
-//        }
-//    }
-//    private suspend fun getStyleFromDataBase(): Hairstyle? {
-//        return withContext(Dispatchers.IO) {
-//            var style = database.get(0)
-//            style
-//        }
-//    }
+
     private lateinit var fbdatabase: DatabaseReference
 
     private val _hairstylesList = MutableLiveData<List<Hairstyle>>()

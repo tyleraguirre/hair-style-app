@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 //        fetchDataAndStore()
     }
 
-    fun forceDatabaseInit() {
-        val db = HairstyleDatabase
-    }
-}
+//    fun forceDatabaseInit() {
+//        val db = HairstyleDatabase
+//    }
+//}
