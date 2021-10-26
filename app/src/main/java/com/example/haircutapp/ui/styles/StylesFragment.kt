@@ -36,6 +36,10 @@ class StylesFragment : Fragment() {
         val viewModelFactory = StylesViewModelFactory(dataSource, application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(StylesViewModel::class.java)
 
+        val manager = GridLayoutManager(activity, 3)
+
+        val adapter = StylesAdapter(viewModel)
+
 
         viewModel.selectedStyle.observe(viewLifecycleOwner, Observer {
             it?.let { hairstyle ->
@@ -46,9 +50,11 @@ class StylesFragment : Fragment() {
             }
         })
 
-        val manager = GridLayoutManager(activity, 3)
+        viewModel.hairstylesList.observe(viewLifecycleOwner, Observer { hairstyleList ->
+            adapter.submitList(hairstyleList)
+        })
 
-        val adapter = StylesAdapter(viewModel)
+
 
         binding.stylesRecyclerview.layoutManager = manager
 

@@ -35,14 +35,14 @@ class StylesAdapter(val viewModel: StylesViewModel): ListAdapter<Hairstyle, Styl
             var item = getItem(position)
 
             binding.mainLayout.setOnClickListener {
-                viewModel.setHairstyle(item)
+//                viewModel.setHairstyle(item)
             }
 
             var styleName = binding.styleName
             var styleImage = binding.styleImage
 
             styleName.text = item.styleName
-//            styleImage.setImageResource(item.styleImage)
+//            styleImage.setImageResource(item.styleImage!!)
 
 
         }
