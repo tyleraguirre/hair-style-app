@@ -54,6 +54,9 @@ class MapFragment : Fragment() {
         }
     }
 
+    /*This launches a GoogleMap intent that uses the users current location so they can search
+    for barbers and salons in their area
+     */
     fun launchIntent() {
 
         uri = Uri.parse("geo:${lastLocation?.latitude}, ${lastLocation?.longitude}")

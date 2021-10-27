@@ -44,6 +44,10 @@ class StylesViewModel(
     val hairstylesList: LiveData<List<Hairstyle>>
         get() = _hairstylesList
 
+    /*This function gets FB reference and we pass in the styleList to the url to access our objects then pass
+    it to our live data for the fragment to observe
+     */
+
     fun fetchDataAndStore() {
 
         fbdatabase =

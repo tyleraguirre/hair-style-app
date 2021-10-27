@@ -13,6 +13,7 @@ import com.example.haircutapp.R
 import com.example.haircutapp.databinding.FragmentDetailBinding
 import com.example.haircutapp.hairstylesdatabase.Hairstyle
 import com.example.haircutapp.hairstylesdatabase.HairstyleDatabase
+import com.example.haircutapp.ui.styles.StylesViewModel
 import kotlinx.android.synthetic.main.fragment_detail.*
 
 class DetailFragment : Fragment() {
@@ -20,13 +21,8 @@ class DetailFragment : Fragment() {
     private lateinit var binding: FragmentDetailBinding
     private lateinit var viewModel: DetailViewModel
 
-    private val hairstyle: Hairstyle
-        get() {
-            hairstyle.aboutStyle
-            hairstyle.imagesOfStyle
+    private val hairstyle = Hairstyle()
 
-            return hairstyle
-        }
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -41,12 +37,13 @@ class DetailFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-
         binding.aboutThisStyleButton.setOnClickListener {
+            //Need to pass aboutStyle value from FB database/Json
             openWebPage(hairstyle.aboutStyle)
         }
 
         binding.styleImagesButton.setOnClickListener {
+            //Need to pass imagesOfStyle value from FB database/Json
             openWebPage(hairstyle.imagesOfStyle)
         }
 
@@ -57,10 +54,9 @@ class DetailFragment : Fragment() {
 ////            Toast
 //        }
 
-
         return binding.root
     }
-
+    //This launches a Intent to open a web browser
     private fun openWebPage(url: String) {
         val webPage: Uri = Uri.parse(url)
         val intent = Intent(Intent.ACTION_VIEW, webPage)
