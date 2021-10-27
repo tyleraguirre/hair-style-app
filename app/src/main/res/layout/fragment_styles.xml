@@ -35,6 +35,7 @@
             android:layout_marginBottom="8dp"
             android:gravity="center_horizontal"
             android:text="@string/style_screen_message"
+            android:fontFamily="@font/concert_one"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textStyle="bold"

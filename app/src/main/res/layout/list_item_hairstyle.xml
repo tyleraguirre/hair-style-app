@@ -29,10 +29,11 @@
 
     <TextView
         android:id="@+id/style_name"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:text="style_name"
+        android:layout_width="89dp"
+        android:layout_height="38dp"
+        android:fontFamily="@font/concert_one"
         android:gravity="center"
+        android:text="style_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/style_image"
         app:layout_constraintStart_toStartOf="@+id/style_image"
