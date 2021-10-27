@@ -43,8 +43,6 @@ class StylesAdapter(val viewModel: StylesViewModel): ListAdapter<Hairstyle, Styl
 
             styleName.text = item.styleName
             styleImage.setImageResource(item.styleImage!!)
-
-
         }
     }
 

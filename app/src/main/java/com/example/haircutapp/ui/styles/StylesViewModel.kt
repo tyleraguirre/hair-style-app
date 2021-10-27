@@ -2,14 +2,11 @@ package com.example.haircutapp.ui.styles
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.haircutapp.R
 import com.example.haircutapp.hairstylesdatabase.HairstyleDao
-import com.example.haircutapp.hairstylesdatabase.HairstyleDatabase
-import kotlinx.coroutines.*
 import com.example.haircutapp.hairstylesdatabase.Hairstyle
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -53,13 +50,14 @@ class StylesViewModel(
             FirebaseDatabase.getInstance("https://hairstyle-api-e5fc7-default-rtdb.firebaseio.com/")
                 .getReference("hairstyles")
 
-        for (style in StyleList.styleList) {
+        for (style in StyleDataList.styleList) {
             fbdatabase.child("$style").get().addOnSuccessListener { data ->
                 val myObject = data.getValue(Hairstyle::class.java)
                 val styleName = myObject?.styleName
                 val imagesOfStyle = myObject?.imagesOfStyle
                 val aboutStyle = myObject?.aboutStyle
-                var hairstyle = Hairstyle(0, styleName!!, null, aboutStyle!!, imagesOfStyle!!)
+                val styleImages= StyleDataList.styleImageList
+                var hairstyle = Hairstyle(0, styleName!!, styleImages[style], aboutStyle!!, imagesOfStyle!!)
                 processData(hairstyle)
                 loopCount += 1
                 Log.i("${TAG.TAG}", "$loopCount")
@@ -68,7 +66,7 @@ class StylesViewModel(
     }
     fun processData(hairstyle: Hairstyle) {
         allHairstylesList.add(hairstyle)
-        if (loopCount == StyleList.styleList.size - 1) {
+        if (loopCount == StyleDataList.styleList.size - 1) {
     passToLiveData()
     loopCount = 0
 }
@@ -78,7 +76,7 @@ class StylesViewModel(
     }
 }
 
-object StyleList {
+object StyleDataList {
     val styleList = listOf(
         "broflow",
         "buzzcut",
@@ -93,6 +91,21 @@ object StyleList {
         "quiff",
         "topknot",
         "undercut"
+    )
+    val styleImageList = mapOf(
+        "broflow" to R.drawable.model_sv_m,
+        "buzzcut" to R.drawable.buzzcut_sv_m,
+        "caesarcut" to R.drawable.model_sv_m,
+        "combover" to R.drawable.model_sv_m,
+        "crewcut" to R.drawable.model_sv_m,
+        "fade" to R.drawable.model_sv_m,
+        "fauxhawk" to R.drawable.fauxhawk_sv_m,
+        "fringe" to R.drawable.model_sv_m,
+        "manbun" to R.drawable.manbun_sv_m,
+        "pompadour" to R.drawable.pompadour_sv_m,
+        "quiff" to R.drawable.quiff_sv_m,
+        "topknot" to R.drawable.manbun_sv_m,
+        "undercut" to R.drawable.model_sv_m
     )
 }
 
