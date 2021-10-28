@@ -46,6 +46,7 @@ class StylesFragment : Fragment() {
                 // Navigate to detail fragment
                 this.findNavController().navigate(
                     StylesFragmentDirections.actionNavigationStylesToDetailFragment(hairstyle))
+//                sharedViewModel.navigationComplete()
             }
         })
 

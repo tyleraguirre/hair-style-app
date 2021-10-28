@@ -22,14 +22,17 @@ class SharedViewModel: ViewModel() {
         _selectedStyle.value = hairstyle
     }
 
-    private val _selectedStyle = MutableLiveData<Hairstyle>()
-    val selectedStyle: LiveData<Hairstyle>
+    private val _selectedStyle = MutableLiveData<Hairstyle?>()
+    val selectedStyle: LiveData<Hairstyle?>
         get() = _selectedStyle
 
     init {
         fetchDataAndStore()
     }
-    
+//    fun navigationComplete() {
+//        _selectedStyle.value = null
+//    }
+
     private lateinit var fbdatabase: DatabaseReference
 
     private val _hairstylesList = MutableLiveData<List<Hairstyle>>()
