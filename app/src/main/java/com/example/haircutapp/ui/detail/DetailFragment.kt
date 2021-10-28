@@ -8,12 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.example.haircutapp.R
+import com.example.haircutapp.SharedViewModel
 import com.example.haircutapp.databinding.FragmentDetailBinding
 import com.example.haircutapp.hairstylesdatabase.Hairstyle
 import com.example.haircutapp.hairstylesdatabase.HairstyleDatabase
-import com.example.haircutapp.ui.styles.StylesViewModel
 import kotlinx.android.synthetic.main.fragment_detail.*
 
 class DetailFragment : Fragment() {
@@ -21,8 +24,10 @@ class DetailFragment : Fragment() {
     private lateinit var binding: FragmentDetailBinding
     private lateinit var viewModel: DetailViewModel
 
-    private val hairstyle = Hairstyle()
+    private var aboutHairstylesUrl = ""
+    private var imagesOfHairstyleUrl = ""
 
+    val sharedViewModel: SharedViewModel by activityViewModels()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -37,14 +42,25 @@ class DetailFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
+        sharedViewModel.selectedStyle.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                binding.detailStyleName.text = it.styleName
+                if (it.styleImage != null) {
+                    binding.detailStyleImage.setImageResource(it.styleImage!!)
+                }
+                aboutHairstylesUrl = it.aboutStyle
+                imagesOfHairstyleUrl = it.imagesOfStyle
+            }
+        })
+
         binding.aboutThisStyleButton.setOnClickListener {
-            //Need to pass aboutStyle value from FB database/Json
-            openWebPage(hairstyle.aboutStyle)
+            //Need to pass aboutStyle value from FB database/Json based on what Hairstyle is showing on the detail fragment
+            openWebPage(aboutHairstylesUrl)
         }
 
         binding.styleImagesButton.setOnClickListener {
-            //Need to pass imagesOfStyle value from FB database/Json
-            openWebPage(hairstyle.imagesOfStyle)
+            //Need to pass imagesOfStyle value from FB database/Json based on what Hairstyle is showing on the detail fragment
+            openWebPage(imagesOfHairstyleUrl)
         }
 
 //        add_to_favorites_button.setOnClickListener {

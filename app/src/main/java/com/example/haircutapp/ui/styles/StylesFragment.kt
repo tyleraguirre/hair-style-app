@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.haircutapp.R
+import com.example.haircutapp.SharedViewModel
 import com.example.haircutapp.StylesAdapter
 import com.example.haircutapp.databinding.FragmentStylesBinding
 import com.example.haircutapp.hairstylesdatabase.HairstyleDatabase
@@ -18,7 +20,7 @@ import com.example.haircutapp.hairstylesdatabase.HairstyleDatabase
 class StylesFragment : Fragment() {
 
     private lateinit var binding: FragmentStylesBinding
-    private lateinit var viewModel: StylesViewModel
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,24 +33,23 @@ class StylesFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val dataSource = HairstyleDatabase.getInstance(application).HairstyleDao
 
-        val viewModelFactory = StylesViewModelFactory(dataSource, application)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(StylesViewModel::class.java)
+//        val viewModelFactory = StylesViewModelFactory(dataSource, application)
+//        viewModel = ViewModelProvider(this, viewModelFactory).get(StylesViewModel::class.java)
 
         val manager = GridLayoutManager(activity, 3)
 
-        val adapter = StylesAdapter(viewModel)
+        val adapter = StylesAdapter(sharedViewModel)
 
 
-        viewModel.selectedStyle.observe(viewLifecycleOwner, Observer {
+        sharedViewModel.selectedStyle.observe(viewLifecycleOwner, Observer {
             it?.let { hairstyle ->
                 // Navigate to detail fragment
                 this.findNavController().navigate(
                     StylesFragmentDirections.actionNavigationStylesToDetailFragment(hairstyle))
-                viewModel.navigationComplete()
             }
         })
 
-        viewModel.hairstylesList.observe(viewLifecycleOwner, Observer { hairstyleList ->
+        sharedViewModel.hairstylesList.observe(viewLifecycleOwner, Observer { hairstyleList ->
             adapter.submitList(hairstyleList)
         })
 

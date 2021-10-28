@@ -12,7 +12,8 @@
         tools:layout="@layout/fragment_styles" >
         <action
             android:id="@+id/action_navigation_styles_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            app:destination="@id/detailFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 
     <fragment
