@@ -35,7 +35,7 @@ class DetailFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
         val dataSource = HairstyleDatabase.getInstance(application).HairstyleDao
-        
+
         binding.lifecycleOwner = this
 
         sharedViewModel.selectedStyle.observe(viewLifecycleOwner, Observer {
