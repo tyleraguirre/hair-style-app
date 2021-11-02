@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -14,6 +16,7 @@ import com.example.haircutapp.R
 import com.example.haircutapp.SharedViewModel
 import com.example.haircutapp.databinding.FragmentDetailBinding
 import com.example.haircutapp.hairstylesdatabase.HairstyleDatabase
+import kotlinx.android.synthetic.main.fragment_detail.*
 
 class DetailFragment : Fragment() {
 
@@ -57,12 +60,12 @@ class DetailFragment : Fragment() {
             openWebPage(imagesOfHairstyleUrl)
         }
 
-//        add_to_favorites_button.setOnClickListener {
-//            //need to have style get added to favorites fragment
-//
-//            //show a toast that the style has been added to fragment
-////            Toast
-//        }
+        binding.addToFavoritesButton.setOnClickListener {
+            //need to have style get added to favorites fragment
+
+            //show a toast that the style has been added to fragment
+            Toast.makeText(context, "Added to Favorites", Toast.LENGTH_SHORT).show()
+        }
 
         return binding.root
     }

@@ -45,8 +45,11 @@ class FavoritesFragment : Fragment() {
         })
 
         sharedViewModel.hairstylesList.observe(viewLifecycleOwner, Observer { hairstyleList ->
-            adapter.submitList(hairstyleList)
         })
+
+        binding.favoritesRecyclerview.layoutManager = manager
+
+        binding.favoritesRecyclerview.adapter = adapter
 
         return binding.root
     }
