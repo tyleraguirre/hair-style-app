@@ -13,6 +13,7 @@
         <action
             android:id="@+id/action_navigation_styles_to_detailFragment"
             app:destination="@id/detailFragment"
+            app:popUpTo="@id/detailFragment"
             app:popUpToInclusive="false" />
     </fragment>
 

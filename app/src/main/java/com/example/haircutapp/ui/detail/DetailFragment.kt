@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.fragment_detail.*
 class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailBinding
-    private lateinit var viewModel: DetailViewModel
+//    private lateinit var viewModel: DetailViewModel
 
     private var aboutHairstylesUrl = ""
     private var imagesOfHairstyleUrl = ""
@@ -37,8 +37,8 @@ class DetailFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val dataSource = HairstyleDatabase.getInstance(application).HairstyleDao
 
-        val viewModelFactory = DetailViewModelFactory(dataSource, application)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(DetailViewModel::class.java)
+//        val viewModelFactory = DetailViewModelFactory(dataSource, application)
+//        viewModel = ViewModelProvider(this, viewModelFactory).get(DetailViewModel::class.java)
 
         binding.lifecycleOwner = this
 
@@ -50,6 +50,8 @@ class DetailFragment : Fragment() {
                 }
                 aboutHairstylesUrl = it.aboutStyle
                 imagesOfHairstyleUrl = it.imagesOfStyle
+
+                sharedViewModel.navigationComplete()
             }
         })
 

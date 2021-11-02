@@ -29,9 +29,9 @@ class SharedViewModel: ViewModel() {
     init {
         fetchDataAndStore()
     }
-//    fun navigationComplete() {
-//        _selectedStyle.value = null
-//    }
+    fun navigationComplete() {
+        _selectedStyle.value = null
+    }
 
     private lateinit var fbdatabase: DatabaseReference
 
