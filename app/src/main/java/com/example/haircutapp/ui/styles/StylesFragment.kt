@@ -33,9 +33,6 @@ class StylesFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val dataSource = HairstyleDatabase.getInstance(application).HairstyleDao
 
-//        val viewModelFactory = StylesViewModelFactory(dataSource, application)
-//        viewModel = ViewModelProvider(this, viewModelFactory).get(StylesViewModel::class.java)
-
         val manager = GridLayoutManager(activity, 3)
 
         val adapter = StylesAdapter(sharedViewModel)
