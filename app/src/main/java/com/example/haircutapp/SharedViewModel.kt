@@ -3,10 +3,14 @@ package com.example.haircutapp
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.haircutapp.hairstylesdatabase.Hairstyle
+import com.example.haircutapp.ui.detail.DetailFragment
+import com.example.haircutapp.ui.favorites.FavoritesFragment
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.fragment_detail.*
 
 class SharedViewModel: ViewModel() {
 
@@ -38,6 +42,7 @@ class SharedViewModel: ViewModel() {
     private val _hairstylesList = MutableLiveData<List<Hairstyle>>()
     val hairstylesList: LiveData<List<Hairstyle>>
         get() = _hairstylesList
+
 
     /*This function gets FB reference and we pass in the styleList to the url to access our objects then pass
     it to our live data for the fragment

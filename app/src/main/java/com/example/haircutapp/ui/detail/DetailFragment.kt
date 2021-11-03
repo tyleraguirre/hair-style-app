@@ -12,10 +12,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.Transformations
 import com.example.haircutapp.R
 import com.example.haircutapp.SharedViewModel
 import com.example.haircutapp.databinding.FragmentDetailBinding
+import com.example.haircutapp.hairstylesdatabase.Hairstyle
 import com.example.haircutapp.hairstylesdatabase.HairstyleDatabase
+import com.example.haircutapp.ui.favorites.FavoritesAdapter
+import com.example.haircutapp.ui.favorites.FavoritesFragment
 import kotlinx.android.synthetic.main.fragment_detail.*
 
 class DetailFragment : Fragment() {
@@ -65,6 +69,9 @@ class DetailFragment : Fragment() {
 
             //show a toast that the style has been added to fragment
             Toast.makeText(context, "Added to Favorites", Toast.LENGTH_SHORT).show()
+
+            //need to hide button once style has been favorited
+
         }
 
         return binding.root

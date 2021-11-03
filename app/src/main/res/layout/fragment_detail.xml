@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" >
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -12,13 +13,14 @@
             android:id="@+id/detail_style_name"
             android:layout_width="350dp"
             android:layout_height="54dp"
-            android:text="FauxHawk"
             android:fontFamily="@font/concert_one"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="FauxHawk"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/detail_style_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintBottom_toTopOf="@+id/detail_style_image" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/detail_style_image"
@@ -66,7 +68,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/style_images_button" />
+            app:layout_constraintTop_toBottomOf="@+id/style_images_button"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
