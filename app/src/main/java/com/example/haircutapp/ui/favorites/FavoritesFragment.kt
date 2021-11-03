@@ -16,6 +16,7 @@ import com.example.haircutapp.R
 import com.example.haircutapp.SharedViewModel
 import com.example.haircutapp.StylesAdapter
 import com.example.haircutapp.databinding.FragmentFavoritesBinding
+import com.example.haircutapp.hairstylesdatabase.Hairstyle
 import com.example.haircutapp.ui.styles.StylesFragmentDirections
 
 class FavoritesFragment : Fragment() {
@@ -44,8 +45,10 @@ class FavoritesFragment : Fragment() {
             }
         })
 
-        sharedViewModel.hairstylesList.observe(viewLifecycleOwner, Observer { hairstyleList ->
-        })
+//        sharedViewModel.selectedStyle.observe(viewLifecycleOwner, Observer { selectedStyle ->
+//            selectedStyle?.favorited
+//            adapter.submitList(selectedStyle)
+//        })
 
         binding.favoritesRecyclerview.layoutManager = manager
 

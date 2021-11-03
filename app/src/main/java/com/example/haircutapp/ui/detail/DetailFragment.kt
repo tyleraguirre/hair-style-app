@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -17,6 +19,7 @@ import com.example.haircutapp.R
 import com.example.haircutapp.SharedViewModel
 import com.example.haircutapp.databinding.FragmentDetailBinding
 import com.example.haircutapp.hairstylesdatabase.Hairstyle
+import com.example.haircutapp.hairstylesdatabase.HairstyleDao
 import com.example.haircutapp.hairstylesdatabase.HairstyleDatabase
 import com.example.haircutapp.ui.favorites.FavoritesAdapter
 import com.example.haircutapp.ui.favorites.FavoritesFragment
@@ -66,12 +69,14 @@ class DetailFragment : Fragment() {
 
         binding.addToFavoritesButton.setOnClickListener {
             //need to have style get added to favorites fragment
+//            val currentStyle = sharedViewModel.selectedStyle.value.
 
+            val favoritesFragment = FavoritesFragment()
             //show a toast that the style has been added to fragment
             Toast.makeText(context, "Added to Favorites", Toast.LENGTH_SHORT).show()
 
             //need to hide button once style has been favorited
-
+            add_to_favorites_button.isInvisible = true
         }
 
         return binding.root

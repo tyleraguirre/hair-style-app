@@ -61,7 +61,7 @@ class SharedViewModel: ViewModel() {
                 val imagesOfStyle = myObject?.imagesOfStyle
                 val aboutStyle = myObject?.aboutStyle
                 val styleImages= StyleDataList.styleImageList
-                var hairstyle = Hairstyle(0, styleName!!, styleImages[style], aboutStyle!!, imagesOfStyle!!)
+                var hairstyle = Hairstyle(0, styleName!!, favorited = false, styleImages[style], aboutStyle!!, imagesOfStyle!!)
                 processData(hairstyle)
                 loopCount += 1
                 Log.i("${TAG.TAG}", "$loopCount")

@@ -17,6 +17,9 @@ data class Hairstyle(
     @ColumnInfo(name = "style_name")
     val styleName: String = "",
 
+    @ColumnInfo(name = "favorited")
+    var favorited: Boolean? = null,
+    
 //    @ColumnInfo(name = "gender")
 //    var gender: String,
 //
