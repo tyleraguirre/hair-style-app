@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.haircutapp.R
@@ -20,6 +21,7 @@ import com.example.haircutapp.hairstylesdatabase.HairstyleDatabase
 class StylesFragment : Fragment() {
 
     private lateinit var binding: FragmentStylesBinding
+    private lateinit var viewModel: StylesViewModel
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -33,20 +35,27 @@ class StylesFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val dataSource = HairstyleDatabase.getInstance(application).HairstyleDao
 
+        val viewModelFactory = StylesViewModelFactory(dataSource, application)
+
+        viewModel = ViewModelProviders.of(
+            this, viewModelFactory).get(StylesViewModel::class.java)
+
         val manager = GridLayoutManager(activity, 3)
 
-        val adapter = StylesAdapter(sharedViewModel)
+        val adapter = StylesAdapter(viewModel, sharedViewModel)
 
 
-        sharedViewModel.selectedStyle.observe(viewLifecycleOwner, Observer {
+        viewModel.selectedStyle.observe(viewLifecycleOwner, Observer {
             it?.let { hairstyle ->
                 // Navigate to detail fragment
                 this.findNavController().navigate(
                     StylesFragmentDirections.actionNavigationStylesToDetailFragment(hairstyle))
+
+                viewModel.navigationComplete()
             }
         })
 
-        sharedViewModel.hairstylesList.observe(viewLifecycleOwner, Observer { hairstyleList ->
+        viewModel.hairstylesList.observe(viewLifecycleOwner, Observer { hairstyleList ->
             adapter.submitList(hairstyleList)
         })
 

@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.haircutapp.databinding.ListItemHairstyleBinding
 import com.example.haircutapp.hairstylesdatabase.Hairstyle
+import com.example.haircutapp.ui.styles.StylesViewModel
 
 
-class StylesAdapter(val viewModel:SharedViewModel): ListAdapter<Hairstyle, StylesAdapter.StylesViewHolder>(StylesListDiffCallback()) {
+class StylesAdapter(val viewModel:StylesViewModel, val sharedViewModel: SharedViewModel): ListAdapter<Hairstyle, StylesAdapter.StylesViewHolder>(StylesListDiffCallback()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -35,6 +36,7 @@ class StylesAdapter(val viewModel:SharedViewModel): ListAdapter<Hairstyle, Style
 
             binding.mainLayout.setOnClickListener {
                 viewModel.setHairstyle(item)
+                sharedViewModel.setHairstyle(item)
             }
 
             var styleName = binding.styleName

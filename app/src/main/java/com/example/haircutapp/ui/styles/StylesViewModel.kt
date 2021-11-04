@@ -1,22 +1,18 @@
-package com.example.haircutapp
+package com.example.haircutapp.ui.styles
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.example.haircutapp.R
 import com.example.haircutapp.hairstylesdatabase.Hairstyle
 import com.example.haircutapp.hairstylesdatabase.HairstyleDao
-import com.example.haircutapp.hairstylesdatabase.HairstyleDatabase
-import com.example.haircutapp.ui.detail.DetailFragment
-import com.example.haircutapp.ui.favorites.FavoritesFragment
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.fragment_detail.*
-import kotlinx.coroutines.launch
+import java.lang.reflect.Array.get
 
-class SharedViewModel(application: Application): AndroidViewModel(application) {
-
-    private val dao = HairstyleDatabase.getInstance(application).HairstyleDao
-
+class StylesViewModel(val database: HairstyleDao, application: Application) : ViewModel(){
     private var allHairstylesList = mutableListOf<Hairstyle>()
 
     private var loopCount = 0
@@ -38,21 +34,6 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
     }
     fun navigationComplete() {
         _selectedStyle.value = null
-    }
-
-    fun isFavorited(): Boolean {
-       if (_selectedStyle.value?.favorited == true) {
-           return true
-       }
-        return false
-    }
-
-     fun updateHairstyle(isFavorited: Boolean) {
-        viewModelScope.launch {
-            var hairstyle = _selectedStyle.value
-            hairstyle?.favorited = true
-            dao.update(hairstyle!!)
-        }
     }
 
     private lateinit var fbdatabase: DatabaseReference
@@ -79,7 +60,7 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
                 val imagesOfStyle = myObject?.imagesOfStyle
                 val aboutStyle = myObject?.aboutStyle
                 val styleImages= StyleDataList.styleImageList
-                var hairstyle = Hairstyle(0, styleName!!, null, styleImages[style], aboutStyle!!, imagesOfStyle!!)
+                var hairstyle = Hairstyle(0, styleName!!, favorited = false, styleImages[style], aboutStyle!!, imagesOfStyle!!)
                 processData(hairstyle)
                 loopCount += 1
                 Log.i("${TAG.TAG}", "$loopCount")
@@ -89,9 +70,9 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
     fun processData(hairstyle: Hairstyle) {
         allHairstylesList.add(hairstyle)
         if (loopCount == StyleDataList.styleList.size - 1) {
-    passToLiveData()
-    loopCount = 0
-}
+            passToLiveData()
+            loopCount = 0
+        }
     }
     fun passToLiveData() {
         _hairstylesList.value = allHairstylesList
@@ -130,7 +111,3 @@ object StyleDataList {
         "undercut" to R.drawable.model_sv_m
     )
 }
-
-
-//DataSnapshot { key = broflow, value = {aboutStyle=https://en.wikipedia.org/wiki/Wings_(haircut), styleName=Bro Flow, imagesOfStyle=https://www.pinterest.com/bartogilvie/bro-flow-hairstyles-men/} }
-

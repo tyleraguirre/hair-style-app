@@ -7,7 +7,7 @@ import androidx.room.*
 interface HairstyleDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(style: Hairstyle)
+    suspend fun insert(style: List<Hairstyle>)
 
     @Update
     suspend fun update(style: Hairstyle)
@@ -18,4 +18,7 @@ interface HairstyleDao {
 
     @Query("SELECT * FROM hairstyle_table ORDER BY hairstyleId DESC")
     fun getAllHairstyles(): List<Hairstyle>
+
+    @Query("SELECT * FROM hairstyle_table WHERE favorited = :favorited")
+    suspend fun getFavorited(favorited: Boolean): Hairstyle
 }

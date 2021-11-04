@@ -45,11 +45,6 @@ class FavoritesFragment : Fragment() {
             }
         })
 
-//        sharedViewModel.selectedStyle.observe(viewLifecycleOwner, Observer { selectedStyle ->
-//            selectedStyle?.favorited
-//            adapter.submitList(selectedStyle)
-//        })
-
         binding.favoritesRecyclerview.layoutManager = manager
 
         binding.favoritesRecyclerview.adapter = adapter

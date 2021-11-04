@@ -35,14 +35,21 @@ class DetailFragment : Fragment() {
     val sharedViewModel: SharedViewModel by activityViewModels()
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
 
         val application = requireNotNull(this.activity).application
         val dataSource = HairstyleDatabase.getInstance(application).HairstyleDao
 
         binding.lifecycleOwner = this
+
+        if (sharedViewModel.isFavorited()) {
+            binding.addToFavoritesButton.isEnabled = false
+            binding.addToFavoritesButton.setBackgroundColor(resources.getColor(R.color.charcoal))
+        }
 
         sharedViewModel.selectedStyle.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -52,8 +59,6 @@ class DetailFragment : Fragment() {
                 }
                 aboutHairstylesUrl = it.aboutStyle
                 imagesOfHairstyleUrl = it.imagesOfStyle
-
-                sharedViewModel.navigationComplete()
             }
         })
 
@@ -69,18 +74,14 @@ class DetailFragment : Fragment() {
 
         binding.addToFavoritesButton.setOnClickListener {
             //need to have style get added to favorites fragment
-//            val currentStyle = sharedViewModel.selectedStyle.value.
-
-            val favoritesFragment = FavoritesFragment()
             //show a toast that the style has been added to fragment
-            Toast.makeText(context, "Added to Favorites", Toast.LENGTH_SHORT).show()
-
             //need to hide button once style has been favorited
-            add_to_favorites_button.isInvisible = true
+            Toast.makeText(context, "Added to Favorites", Toast.LENGTH_SHORT).show()
+            sharedViewModel.updateHairstyle(true)
         }
-
         return binding.root
     }
+
     //This launches a Intent to open a web browser
     private fun openWebPage(url: String) {
         val webPage: Uri = Uri.parse(url)
@@ -88,3 +89,4 @@ class DetailFragment : Fragment() {
         activity?.startActivity(intent)
     }
 }
+
