@@ -17,13 +17,13 @@ import com.example.haircutapp.SharedViewModel
 import com.example.haircutapp.StylesAdapter
 import com.example.haircutapp.databinding.FragmentFavoritesBinding
 import com.example.haircutapp.hairstylesdatabase.Hairstyle
+import com.example.haircutapp.ui.detail.DetailFragment
 import com.example.haircutapp.ui.styles.StylesFragmentDirections
 
 class FavoritesFragment : Fragment() {
 
     private lateinit var binding: FragmentFavoritesBinding
     private val sharedViewModel: SharedViewModel by activityViewModels()
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,9 +41,19 @@ class FavoritesFragment : Fragment() {
             it?.let { hairstyle ->
                 // Navigate to detail fragment
                 this.findNavController().navigate(
-                    StylesFragmentDirections.actionNavigationStylesToDetailFragment(hairstyle))
+                    FavoritesFragmentDirections.actionNavigationFavoritesToDetailFragment(hairstyle))
             }
         })
+
+//        sharedViewModel.selectedStyle.observe(viewLifecycleOwner, Observer {
+//           try {
+//               if (it?.favorited == true) {
+//                   adapter.submitList(mutableListOf(it))
+//               }
+//           } catch (e: Exception) {
+//               e.printStackTrace()
+//           }
+//        })
 
         binding.favoritesRecyclerview.layoutManager = manager
 

@@ -78,6 +78,11 @@ class DetailFragment : Fragment() {
             //need to hide button once style has been favorited
             Toast.makeText(context, "Added to Favorites", Toast.LENGTH_SHORT).show()
             sharedViewModel.updateHairstyle(true)
+            if (sharedViewModel.isFavorited() == true) {
+                binding.addToFavoritesButton.isEnabled = false
+                binding.addToFavoritesButton.setBackgroundColor(resources.getColor(R.color.charcoal))
+            }
+//            add_to_favorites_button.isEnabled = false
         }
         return binding.root
     }

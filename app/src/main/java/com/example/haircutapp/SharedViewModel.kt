@@ -2,6 +2,7 @@ package com.example.haircutapp
 
 import android.app.Application
 import android.util.Log
+import androidx.core.view.isInvisible
 import androidx.lifecycle.*
 import com.example.haircutapp.hairstylesdatabase.Hairstyle
 import com.example.haircutapp.hairstylesdatabase.HairstyleDao
@@ -12,6 +13,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class SharedViewModel(application: Application): AndroidViewModel(application) {
 
