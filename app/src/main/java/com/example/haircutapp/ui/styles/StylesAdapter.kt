@@ -2,11 +2,13 @@ package com.example.haircutapp
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.haircutapp.databinding.ListItemHairstyleBinding
 import com.example.haircutapp.hairstylesdatabase.Hairstyle
+import com.example.haircutapp.ui.styles.StylesFragmentDirections
 import com.example.haircutapp.ui.styles.StylesViewModel
 
 
@@ -35,8 +37,9 @@ class StylesAdapter(val viewModel:StylesViewModel, val sharedViewModel: SharedVi
             var item = getItem(position)
 
             binding.mainLayout.setOnClickListener {
-                viewModel.setHairstyle(item)
                 sharedViewModel.setHairstyle(item)
+                Navigation.findNavController(this.itemView).navigate(
+                    StylesFragmentDirections.actionNavigationStylesToDetailFragment(item))
             }
 
             var styleName = binding.styleName

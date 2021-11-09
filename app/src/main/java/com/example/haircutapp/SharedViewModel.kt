@@ -19,30 +19,17 @@ class SharedViewModel(val database: HairstyleDao, application: Application): And
 
     val dao = HairstyleDatabase.getInstance(application).HairstyleDao
 
-    private var allHairstylesList = mutableListOf<Hairstyle>()
-
     val hairstylesList: LiveData<List<Hairstyle>> = database.getAllHairstyles()
-
-    private var loopCount = 0
-
-    companion object TAG {
-        val TAG = "TAG"
-    }
-
-    fun setHairstyle(hairstyle: Hairstyle) {
-        _selectedStyle.value = hairstyle
-    }
 
     private val _selectedStyle = MutableLiveData<Hairstyle?>()
     val selectedStyle: LiveData<Hairstyle?>
         get() = _selectedStyle
-//
-//    init {
-////        fetchDataAndStore()
-////    }
-//    fun navigationComplete() {
-//        _selectedStyle.value = null
-//    }
+
+    var backUpStyle: Hairstyle? = null
+
+    fun setHairstyle(hairstyle: Hairstyle) {
+        backUpStyle = hairstyle
+    }
 
     fun isFavorited(): Boolean {
        if (_selectedStyle.value?.favorited == 1) {
@@ -58,15 +45,19 @@ class SharedViewModel(val database: HairstyleDao, application: Application): And
             dao.update(hairstyle!!)
         }
     }
-
-//    private lateinit var fbdatabase: DatabaseReference
-
 }
-
 
     /*This function gets FB reference and we pass in the styleList to the url to access our objects then pass
     it to our live data for the fragment
      */
+
+//    private lateinit var fbdatabase: DatabaseReference
+
+//    private var loopCount = 0
+
+//    companion object TAG {
+//        val TAG = "TAG"
+//    }
 //
 //    fun fetchDataAndStore() {
 //        viewModelScope.launch {

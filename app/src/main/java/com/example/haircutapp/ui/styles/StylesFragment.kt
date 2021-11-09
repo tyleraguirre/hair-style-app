@@ -49,16 +49,6 @@ class StylesFragment : Fragment() {
 
         val adapter = StylesAdapter(viewModel, sharedViewModel)
 
-
-        viewModel.selectedStyle.observe(viewLifecycleOwner, Observer {
-            it?.let { hairstyle ->
-                // Navigate to detail fragment
-                this.findNavController().navigate(
-                    StylesFragmentDirections.actionNavigationStylesToDetailFragment(hairstyle))
-
-                viewModel.navigationComplete()
-            }
-        })
         viewModel.hairstylesList.observe(viewLifecycleOwner, Observer { hairstyleList ->
             val sortedStyles = hairstyleList.sortedBy { it.styleName }
             adapter.submitList(sortedStyles)
@@ -69,8 +59,18 @@ class StylesFragment : Fragment() {
         binding.stylesRecyclerview.adapter = adapter
 
         return binding.root
-
     }
 }
+
+//
+//        viewModel.selectedStyle.observe(viewLifecycleOwner, Observer {
+//            it?.let { hairstyle ->
+//                // Navigate to detail fragment
+//                this.findNavController().navigate(
+//                    StylesFragmentDirections.actionNavigationStylesToDetailFragment(hairstyle))
+//
+//                viewModel.navigationComplete()
+//            }
+//        })
 
 

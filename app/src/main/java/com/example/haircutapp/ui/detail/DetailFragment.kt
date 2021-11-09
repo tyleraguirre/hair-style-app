@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.Transformations
+import androidx.navigation.fragment.navArgs
 import com.example.haircutapp.R
 import com.example.haircutapp.SharedViewModel
 import com.example.haircutapp.databinding.FragmentDetailBinding
@@ -28,13 +29,8 @@ import kotlinx.android.synthetic.main.fragment_detail.*
 class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailBinding
-
-    private var aboutHairstylesUrl = ""
-    private var imagesOfHairstyleUrl = ""
     private lateinit var sharedViewModel: SharedViewModel
-
-
-
+    private val args: DetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,25 +50,16 @@ class DetailFragment : Fragment() {
             binding.addToFavoritesButton.setBackgroundColor(resources.getColor(R.color.charcoal))
         }
 
-        sharedViewModel.selectedStyle.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                binding.detailStyleName.text = it.styleName
-                if (it.styleImage != null) {
-                    binding.detailStyleImage.setImageResource(it.styleImage!!)
-                }
-                aboutHairstylesUrl = it.aboutStyle
-                imagesOfHairstyleUrl = it.imagesOfStyle
-            }
-        })
+        setUpView()
 
         binding.aboutThisStyleButton.setOnClickListener {
             //Need to pass aboutStyle value from FB database/Json based on what Hairstyle is showing on the detail fragment
-            openWebPage(aboutHairstylesUrl)
+            openWebPage(args.hairstyle.aboutStyle)
         }
 
         binding.styleImagesButton.setOnClickListener {
             //Need to pass imagesOfStyle value from FB database/Json based on what Hairstyle is showing on the detail fragment
-            openWebPage(imagesOfHairstyleUrl)
+            openWebPage(args.hairstyle.imagesOfStyle)
         }
 
         binding.addToFavoritesButton.setOnClickListener {
@@ -95,5 +82,23 @@ class DetailFragment : Fragment() {
         val intent = Intent(Intent.ACTION_VIEW, webPage)
         activity?.startActivity(intent)
     }
+
+    fun setUpView() {
+        binding.detailStyleName.text = args.hairstyle.styleName
+        binding.detailStyleImage.setImageResource(args.hairstyle.styleImage!!)
+    }
 }
+
+
+//        sharedViewModel.selectedStyle.observe(viewLifecycleOwner, Observer {
+//            it?.let {
+//                binding.detailStyleName.text = it.styleName
+//                if (it.styleImage != null) {
+//                    binding.detailStyleImage.setImageResource(it.styleImage!!)
+//                }
+//                aboutHairstylesUrl = it.aboutStyle
+//                imagesOfHairstyleUrl = it.imagesOfStyle
+//            }
+//        })
+
 
