@@ -20,7 +20,7 @@ import com.example.haircutapp.hairstylesdatabase.HairstyleDatabase
 
 class StylesFragment : Fragment() {
 
-    private val sharedViewModel: SharedViewModel by activityViewModels()
+    private lateinit var sharedViewModel: SharedViewModel
 
     private lateinit var binding: FragmentStylesBinding
     private lateinit var viewModel: StylesViewModel
@@ -42,6 +42,8 @@ class StylesFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(
             this, viewModelFactory).get(StylesViewModel::class.java)
+
+        sharedViewModel = SharedViewModel(dataSource, application)
 
         val manager = GridLayoutManager(activity, 3)
 

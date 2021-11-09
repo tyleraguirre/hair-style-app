@@ -31,8 +31,9 @@ class DetailFragment : Fragment() {
 
     private var aboutHairstylesUrl = ""
     private var imagesOfHairstyleUrl = ""
+    private lateinit var sharedViewModel: SharedViewModel
 
-    val sharedViewModel: SharedViewModel by activityViewModels()
+
 
 
     override fun onCreateView(
@@ -43,6 +44,8 @@ class DetailFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
         val dataSource = HairstyleDatabase.getInstance(application).HairstyleDao
+
+        sharedViewModel = SharedViewModel(dataSource, application)
 
         binding.lifecycleOwner = this
 

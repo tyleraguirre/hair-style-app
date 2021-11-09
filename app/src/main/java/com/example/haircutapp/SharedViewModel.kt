@@ -17,9 +17,11 @@ import java.lang.Exception
 
 class SharedViewModel(val database: HairstyleDao, application: Application): AndroidViewModel(application) {
 
-    private val dao = HairstyleDatabase.getInstance(application).HairstyleDao
+    val dao = HairstyleDatabase.getInstance(application).HairstyleDao
 
     private var allHairstylesList = mutableListOf<Hairstyle>()
+
+    val hairstylesList: LiveData<List<Hairstyle>> = database.getAllHairstyles()
 
     private var loopCount = 0
 
@@ -38,9 +40,9 @@ class SharedViewModel(val database: HairstyleDao, application: Application): And
 //    init {
 ////        fetchDataAndStore()
 ////    }
-    fun navigationComplete() {
-        _selectedStyle.value = null
-    }
+//    fun navigationComplete() {
+//        _selectedStyle.value = null
+//    }
 
     fun isFavorited(): Boolean {
        if (_selectedStyle.value?.favorited == 1) {
@@ -59,7 +61,6 @@ class SharedViewModel(val database: HairstyleDao, application: Application): And
 
 //    private lateinit var fbdatabase: DatabaseReference
 
-     val hairstylesList: LiveData<List<Hairstyle>> = database.getAllHairstyles()
 }
 
 
