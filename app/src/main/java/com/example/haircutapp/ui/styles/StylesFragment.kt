@@ -20,9 +20,12 @@ import com.example.haircutapp.hairstylesdatabase.HairstyleDatabase
 
 class StylesFragment : Fragment() {
 
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+
     private lateinit var binding: FragmentStylesBinding
     private lateinit var viewModel: StylesViewModel
-    private val sharedViewModel: SharedViewModel by activityViewModels()
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,9 +57,9 @@ class StylesFragment : Fragment() {
                 viewModel.navigationComplete()
             }
         })
-
         viewModel.hairstylesList.observe(viewLifecycleOwner, Observer { hairstyleList ->
-            adapter.submitList(hairstyleList)
+            val sortedStyles = hairstyleList.sortedBy { it.styleName }
+            adapter.submitList(sortedStyles)
         })
 
         binding.stylesRecyclerview.layoutManager = manager

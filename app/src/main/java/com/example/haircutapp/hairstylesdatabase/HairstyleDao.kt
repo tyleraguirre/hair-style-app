@@ -9,6 +9,9 @@ interface HairstyleDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(style: List<Hairstyle>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertSingeHairstyle(style: Hairstyle)
+
     @Update
     suspend fun update(style: Hairstyle)
 
@@ -17,7 +20,7 @@ interface HairstyleDao {
     suspend fun get(key: Long): Hairstyle
 
     @Query("SELECT * FROM hairstyle_table ORDER BY hairstyleId DESC")
-    fun getAllHairstyles(): List<Hairstyle>
+    fun getAllHairstyles(): LiveData<List<Hairstyle>>
 
     @Query("SELECT * FROM hairstyle_table WHERE favorited = :favorited")
     suspend fun getFavorited(favorited: Boolean): Hairstyle

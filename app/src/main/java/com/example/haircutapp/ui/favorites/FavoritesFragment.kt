@@ -37,23 +37,14 @@ class FavoritesFragment : Fragment() {
 
         val adapter = FavoritesAdapter(sharedViewModel)
 
-        sharedViewModel.selectedStyle.observe(viewLifecycleOwner, Observer {
-            it?.let { hairstyle ->
-                // Navigate to detail fragment
-                this.findNavController().navigate(
-                    FavoritesFragmentDirections.actionNavigationFavoritesToDetailFragment(hairstyle))
+        sharedViewModel.hairstylesList.observe(viewLifecycleOwner, Observer { hairstyleslist ->
+            val filteredHairstyles = hairstyleslist.filter { hairstyle ->
+                hairstyle.favorited == 1
             }
+            adapter.submitList(filteredHairstyles)
         })
 
-//        sharedViewModel.selectedStyle.observe(viewLifecycleOwner, Observer {
-//           try {
-//               if (it?.favorited == true) {
-//                   adapter.submitList(mutableListOf(it))
-//               }
-//           } catch (e: Exception) {
-//               e.printStackTrace()
-//           }
-//        })
+
 
         binding.favoritesRecyclerview.layoutManager = manager
 

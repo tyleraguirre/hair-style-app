@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
             Hairstyle(
                 1,
                 "broflow",
-                null,
+                0,
                 R.drawable.model_sv_m,
                 "https://en.wikipedia.org/wiki/Wings_(haircut)",
                 "https://www.pinterest.com/bartogilvie/bro-flow-hairstyles-men/"
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
             Hairstyle(
                 2,
                 "buzzcut",
-                null,
+                0,
                 R.drawable.buzzcut_sv_m,
                 "https://en.wikipedia.org/wiki/Buzz_cut",
                 "https://www.pinterest.com/mmanderi/buzz-cut/"
@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
             Hairstyle(
                 3,
                 "caesarcut",
-                null,
+                0,
                 R.drawable.model_sv_m,
                 "https://en.wikipedia.org/wiki/Caesar_cut",
                 "https://www.pinterest.com/menshairtips/caesar-haircut/"
@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity() {
             Hairstyle(
                 4,
                 "combover",
-                null,
+                0,
                 R.drawable.model_sv_m,
                 "https://en.wikipedia.org/wiki/Comb_over",
                 "https://www.pinterest.com/menshairtips/comb-over-hairstyle/"
@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity() {
             Hairstyle(
                 5,
                 "crewcut",
-                null,
+                0,
                 R.drawable.model_sv_m,
                 "https://en.wikipedia.org/wiki/Crew_cut",
                 "https://www.pinterest.com/menshairtips/crew-cut-haircut/"
@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity() {
             Hairstyle(
                 6,
                 "fade",
-                null,
+                0,
                 R.drawable.model_sv_m,
                 "https://en.wikipedia.org/wiki/Regular_haircut",
                 "https://www.pinterest.com/menshairtoday/fade-haircuts/"
@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity() {
             Hairstyle(
                 7,
                 "fauxhawk",
-                null,
+                0,
                 R.drawable.fauxhawk_sv_m,
                 "https://en.wikipedia.org/wiki/Mohawk_hairstyle",
                 "https://www.pinterest.com/menshairtips/faux-hawk-hairstyle/"
@@ -135,7 +135,7 @@ class MainActivity : AppCompatActivity() {
             Hairstyle(
                 8,
                 "fringe",
-                null,
+                0,
                 R.drawable.model_sv_m,
                 "https://en.wikipedia.org/wiki/Bangs_(hair)",
                 "https://www.pinterest.com/silva0966/mens-fringe/"
@@ -143,7 +143,7 @@ class MainActivity : AppCompatActivity() {
             Hairstyle(
                 9,
                 "manbun",
-                null,
+                0,
                 R.drawable.manbun_sv_m,
                 "https://en.wikipedia.org/wiki/Bun_(hairstyle)",
                 "https://www.pinterest.com/genggam_pw/manbun/"
@@ -151,7 +151,7 @@ class MainActivity : AppCompatActivity() {
             Hairstyle(
                 10,
                 "pompadour",
-                null,
+                0,
                 R.drawable.pompadour_sv_m,
                 "https://en.wikipedia.org/wiki/Pompadour_(hairstyle)",
                 "https://www.pinterest.com/barbinccom/mens-pompadours/"
@@ -159,7 +159,7 @@ class MainActivity : AppCompatActivity() {
             Hairstyle(
                 11,
                 "quiff",
-                null,
+                0,
                 R.drawable.quiff_sv_m,
                 "https://en.wikipedia.org/wiki/Quiff",
                 "https://www.pinterest.com/tath7788/quiff/"
@@ -167,7 +167,7 @@ class MainActivity : AppCompatActivity() {
             Hairstyle(
                 12,
                 "topknot",
-                null,
+                0,
                 R.drawable.manbun_sv_m,
                 "https://en.wikipedia.org/wiki/Topknot",
                 "https://www.pinterest.com/tgo_eden/mens-top-knotman-bun/"
@@ -175,25 +175,11 @@ class MainActivity : AppCompatActivity() {
             Hairstyle(
                 13,
                 "undercut",
-                null,
+                0,
                 R.drawable.model_sv_m,
                 "https://en.wikipedia.org/wiki/Undercut_(hairstyle)",
                 "https://www.pinterest.com/menshairtoday/undercut-hairstyles-for-men/"
             )
-
-//            "broflow", R.drawable.model_sv_m,
-//            "buzzcut", R.drawable.buzzcut_sv_m,
-//            "caesarcut", R.drawable.model_sv_m,
-//            "combover", R.drawable.model_sv_m,
-//            "crewcut", R.drawable.model_sv_m,
-//            "fade", R.drawable.model_sv_m,
-//            "fauxhawk", R.drawable.fauxhawk_sv_m,
-//            "fringe", R.drawable.model_sv_m,
-//            "manbun", R.drawable.manbun_sv_m,
-//            "pompadour", R.drawable.pompadour_sv_m,
-//            "quiff", R.drawable.quiff_sv_m,
-//            "topknot", R.drawable.manbun_sv_m,
-//            "undercut" R.drawable.model_sv_m,
         )
 }
 

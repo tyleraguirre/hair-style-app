@@ -2,6 +2,7 @@ package com.example.haircutapp.ui.favorites
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -36,6 +37,9 @@ class FavoritesAdapter(val viewModel: SharedViewModel): ListAdapter<Hairstyle, F
 
             binding.mainLayout.setOnClickListener {
                 viewModel.setHairstyle(item)
+                it.findNavController().navigate(
+                    FavoritesFragmentDirections.actionNavigationFavoritesToDetailFragment(item)
+                )
             }
 
             var styleName = binding.styleName
