@@ -32,7 +32,6 @@ class FavoritesFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorites, container, false)
 
-        val application = requireNotNull(this.activity).application
         val manager = GridLayoutManager(activity, 3)
 
         val adapter = FavoritesAdapter(sharedViewModel)
@@ -43,7 +42,6 @@ class FavoritesFragment : Fragment() {
             }
             adapter.submitList(filteredHairstyles)
         })
-
 
 
         binding.favoritesRecyclerview.layoutManager = manager

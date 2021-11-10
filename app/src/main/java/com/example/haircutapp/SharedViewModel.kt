@@ -15,20 +15,18 @@ import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class SharedViewModel(val database: HairstyleDao, application: Application): AndroidViewModel(application) {
+class SharedViewModel(application: Application): AndroidViewModel(application) {
 
     val dao = HairstyleDatabase.getInstance(application).HairstyleDao
 
-    val hairstylesList: LiveData<List<Hairstyle>> = database.getAllHairstyles()
+    val hairstylesList: LiveData<List<Hairstyle>> = dao.getAllHairstyles()
 
     private val _selectedStyle = MutableLiveData<Hairstyle?>()
     val selectedStyle: LiveData<Hairstyle?>
         get() = _selectedStyle
 
-    var backUpStyle: Hairstyle? = null
-
     fun setHairstyle(hairstyle: Hairstyle) {
-        backUpStyle = hairstyle
+        _selectedStyle.value = hairstyle
     }
 
     fun isFavorited(): Boolean {

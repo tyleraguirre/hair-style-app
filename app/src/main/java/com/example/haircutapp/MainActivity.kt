@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
                 3,
                 "caesarcut",
                 0,
-                R.drawable.model_sv_m,
+                R.drawable.ceasarcut,
                 "https://en.wikipedia.org/wiki/Caesar_cut",
                 "https://www.pinterest.com/menshairtips/caesar-haircut/"
             ),
@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
                 4,
                 "combover",
                 0,
-                R.drawable.model_sv_m,
+                R.drawable.combover,
                 "https://en.wikipedia.org/wiki/Comb_over",
                 "https://www.pinterest.com/menshairtips/comb-over-hairstyle/"
             ),
@@ -112,7 +112,7 @@ class MainActivity : AppCompatActivity() {
                 5,
                 "crewcut",
                 0,
-                R.drawable.model_sv_m,
+                R.drawable.crewcutxxhdpi,
                 "https://en.wikipedia.org/wiki/Crew_cut",
                 "https://www.pinterest.com/menshairtips/crew-cut-haircut/"
             ),
@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
                 6,
                 "fade",
                 0,
-                R.drawable.model_sv_m,
+                R.drawable.fadexxhdpi,
                 "https://en.wikipedia.org/wiki/Regular_haircut",
                 "https://www.pinterest.com/menshairtoday/fade-haircuts/"
             ),
@@ -168,7 +168,7 @@ class MainActivity : AppCompatActivity() {
                 12,
                 "topknot",
                 0,
-                R.drawable.manbun_sv_m,
+                R.drawable.topknotxxhdpi,
                 "https://en.wikipedia.org/wiki/Topknot",
                 "https://www.pinterest.com/tgo_eden/mens-top-knotman-bun/"
             ),
@@ -176,7 +176,7 @@ class MainActivity : AppCompatActivity() {
                 13,
                 "undercut",
                 0,
-                R.drawable.model_sv_m,
+                R.drawable.undercutxxhdpi,
                 "https://en.wikipedia.org/wiki/Undercut_(hairstyle)",
                 "https://www.pinterest.com/menshairtoday/undercut-hairstyles-for-men/"
             )

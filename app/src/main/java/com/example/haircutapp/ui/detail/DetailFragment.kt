@@ -29,7 +29,7 @@ import kotlinx.android.synthetic.main.fragment_detail.*
 class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailBinding
-    private lateinit var sharedViewModel: SharedViewModel
+    private val sharedViewModel: SharedViewModel by activityViewModels()
     private val args: DetailFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -40,8 +40,6 @@ class DetailFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
         val dataSource = HairstyleDatabase.getInstance(application).HairstyleDao
-
-        sharedViewModel = SharedViewModel(dataSource, application)
 
         binding.lifecycleOwner = this
 
