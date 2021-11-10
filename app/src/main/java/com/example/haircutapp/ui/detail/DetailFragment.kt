@@ -45,7 +45,8 @@ class DetailFragment : Fragment() {
 
         if (sharedViewModel.isFavorited()) {
             binding.addToFavoritesButton.isEnabled = false
-            binding.addToFavoritesButton.setBackgroundColor(resources.getColor(R.color.charcoal))
+            binding.addToFavoritesButton.setBackgroundColor(resources.getColor(R.color.black))
+            binding.addToFavoritesButton.setTextColor(resources.getColor(R.color.black))
         }
 
         setUpView()
@@ -68,7 +69,8 @@ class DetailFragment : Fragment() {
             sharedViewModel.updateHairstyle()
             if (sharedViewModel.isFavorited() == true) {
                 binding.addToFavoritesButton.isEnabled = false
-                binding.addToFavoritesButton.setBackgroundColor(resources.getColor(R.color.charcoal))
+                binding.addToFavoritesButton.setBackgroundColor(resources.getColor(R.color.black))
+                binding.addToFavoritesButton.setTextColor(resources.getColor(R.color.black))
             }
         }
         return binding.root

@@ -3,17 +3,11 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    styling
+    <color name="darkblue">#14213D</color>
+    <color name="orange">#F89A03</color>
+    <color name="lightgray">#E5E5E5</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="blue">#31568D</color>
-    <color name="maroon">#8A3D4D</color>
-    <color name="purplish_gray">#48455A</color>
-    <color name="charcoal">#1A1E27</color>
-    
-    <color name="blue_munsell">#1985A1</color>
-    <color name="black_coral">#4C5C68</color>
-    <color name="davys_grey">#46494C</color>
-    <color name="silver">#C5C3C6</color>
-    <color name="gainsboro">#DCDCDD</color>
 </resources>

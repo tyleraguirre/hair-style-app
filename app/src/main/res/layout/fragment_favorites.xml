@@ -10,29 +10,48 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         tools:context=".ui.favorites.FavoritesFragment">
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/favorites_recyclerview"
-            android:layout_width="409dp"
-            android:layout_height="569dp"
+            android:layout_width="408dp"
+            android:layout_height="504dp"
+            android:layout_marginBottom="16dp"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.333"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clearbutton" />
 
         <TextView
             android:id="@+id/favorites_text"
             android:layout_width="143dp"
             android:layout_height="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="45dp"
             android:fontFamily="@font/concert_one"
             android:gravity="center_horizontal"
             android:text="@string/favorite_screen_message"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/favorites_recyclerview"
+            app:layout_constraintBottom_toTopOf="@+id/clearbutton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/clearbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear Favorites"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/favorites_recyclerview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/favorites_text" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
