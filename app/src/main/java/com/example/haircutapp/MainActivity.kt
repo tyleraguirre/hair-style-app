@@ -136,7 +136,7 @@ class MainActivity : AppCompatActivity() {
                 8,
                 "fringe",
                 0,
-                R.drawable.model_sv_m,
+                R.drawable.fringexxhdpi,
                 "https://en.wikipedia.org/wiki/Bangs_(hair)",
                 "https://www.pinterest.com/silva0966/mens-fringe/"
             ),
