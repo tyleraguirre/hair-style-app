@@ -6,19 +6,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.haircutapp.R
+import com.example.haircutapp.SharedViewModel
 import com.example.haircutapp.StylesAdapter
 import com.example.haircutapp.databinding.FragmentStylesBinding
 import com.example.haircutapp.hairstylesdatabase.HairstyleDatabase
 
 class StylesFragment : Fragment() {
 
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+
     private lateinit var binding: FragmentStylesBinding
     private lateinit var viewModel: StylesViewModel
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,24 +39,17 @@ class StylesFragment : Fragment() {
         val dataSource = HairstyleDatabase.getInstance(application).HairstyleDao
 
         val viewModelFactory = StylesViewModelFactory(dataSource, application)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(StylesViewModel::class.java)
+
+        viewModel = ViewModelProviders.of(
+            this, viewModelFactory).get(StylesViewModel::class.java)
 
         val manager = GridLayoutManager(activity, 3)
 
-        val adapter = StylesAdapter(viewModel)
-
-
-        viewModel.selectedStyle.observe(viewLifecycleOwner, Observer {
-            it?.let { hairstyle ->
-                // Navigate to detail fragment
-                this.findNavController().navigate(
-                    StylesFragmentDirections.actionNavigationStylesToDetailFragment(hairstyle))
-                viewModel.navigationComplete()
-            }
-        })
+        val adapter = StylesAdapter(viewModel, sharedViewModel)
 
         viewModel.hairstylesList.observe(viewLifecycleOwner, Observer { hairstyleList ->
-            adapter.submitList(hairstyleList)
+            val sortedStyles = hairstyleList.sortedBy { it.styleName }
+            adapter.submitList(sortedStyles)
         })
 
         binding.stylesRecyclerview.layoutManager = manager
@@ -57,8 +57,18 @@ class StylesFragment : Fragment() {
         binding.stylesRecyclerview.adapter = adapter
 
         return binding.root
-
     }
 }
+
+//
+//        viewModel.selectedStyle.observe(viewLifecycleOwner, Observer {
+//            it?.let { hairstyle ->
+//                // Navigate to detail fragment
+//                this.findNavController().navigate(
+//                    StylesFragmentDirections.actionNavigationStylesToDetailFragment(hairstyle))
+//
+//                viewModel.navigationComplete()
+//            }
+//        })
 
 

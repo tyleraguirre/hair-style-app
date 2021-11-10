@@ -11,8 +11,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetroFitInstance {
     val DATABASE_URL = "https://hairstyle-api-e5fc7-default-rtdb.firebaseio.com/"
 
-    const val TAG = "RetroFitInstance"
-
     private val retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(DATABASE_URL)

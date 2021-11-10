@@ -4,8 +4,8 @@
     <string name="title_favorites">Favorites</string>
     <string name="title_map">Map</string>
     <string name="mens_button">Mens</string>
-    <string name="women_button">Women</string>
     <string name="map_fragment_message">This button will navigate you to Google Maps to find local barbers/salons</string>
     <string name="map_fragment_button">Go to Google Maps</string>
     <string name="style_screen_message">Current trendy mens hairstyles</string>
+    <string name="favorite_screen_message">Saved Styles</string>
 </resources>

@@ -3,11 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="stylesViewModel"
-            type="com.example.haircutapp.ui.styles.StylesViewModel" />
-    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -29,20 +24,22 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="253dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="32dp"
+            android:layout_width="269dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="29dp"
             android:layout_marginBottom="8dp"
+            android:fontFamily="@font/concert_one"
             android:gravity="center_horizontal"
             android:text="@string/style_screen_message"
             android:textAlignment="center"
             android:textAllCaps="true"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/styles_recyclerview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.016" />
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

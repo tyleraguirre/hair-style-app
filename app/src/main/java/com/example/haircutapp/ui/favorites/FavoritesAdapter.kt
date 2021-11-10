@@ -1,45 +1,45 @@
-package com.example.haircutapp
+package com.example.haircutapp.ui.favorites
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.haircutapp.SharedViewModel
+import com.example.haircutapp.StylesAdapter
 import com.example.haircutapp.databinding.ListItemHairstyleBinding
 import com.example.haircutapp.hairstylesdatabase.Hairstyle
-import com.example.haircutapp.ui.styles.StylesFragmentDirections
-import com.example.haircutapp.ui.styles.StylesViewModel
 
-
-class StylesAdapter(val viewModel:StylesViewModel, val sharedViewModel: SharedViewModel): ListAdapter<Hairstyle, StylesAdapter.StylesViewHolder>(StylesListDiffCallback()) {
+class FavoritesAdapter(val viewModel: SharedViewModel): ListAdapter<Hairstyle, FavoritesAdapter.FavoritesViewHolder>(FavoriteListDiffCallback()) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): StylesAdapter.StylesViewHolder {
+    ): FavoritesAdapter.FavoritesViewHolder {
         val view =
             ListItemHairstyleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return StylesViewHolder(view)
+        return FavoritesViewHolder(view)
     }
 
     override fun onBindViewHolder(
-        holder: StylesAdapter.StylesViewHolder,
+        holder: FavoritesAdapter.FavoritesViewHolder,
         position: Int
     ) {
         holder.bind(position)
     }
 
-    inner class StylesViewHolder(val binding: ListItemHairstyleBinding) :
+    inner class FavoritesViewHolder(val binding: ListItemHairstyleBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(position: Int) {
 
             var item = getItem(position)
 
             binding.mainLayout.setOnClickListener {
-                sharedViewModel.setHairstyle(item)
-                Navigation.findNavController(this.itemView).navigate(
-                    StylesFragmentDirections.actionNavigationStylesToDetailFragment(item))
+                viewModel.setHairstyle(item)
+                it.findNavController().navigate(
+                    FavoritesFragmentDirections.actionNavigationFavoritesToDetailFragment(item)
+                )
             }
 
             var styleName = binding.styleName
@@ -52,7 +52,7 @@ class StylesAdapter(val viewModel:StylesViewModel, val sharedViewModel: SharedVi
 
 }
 
-class StylesListDiffCallback : DiffUtil.ItemCallback<Hairstyle>() {
+class FavoriteListDiffCallback : DiffUtil.ItemCallback<Hairstyle>() {
 
     override fun areItemsTheSame(oldItem: Hairstyle, newItem: Hairstyle): Boolean {
         return oldItem == newItem
