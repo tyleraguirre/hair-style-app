@@ -25,7 +25,7 @@
             app:labelVisibilityMode="labeled"
             app:itemIconTint="@color/white"
             app:itemTextColor="@color/white"
-            app:itemRippleColor="@color/lightgray"/>
+            app:itemRippleColor="@color/babypowder"/>
 
         <fragment
             android:id="@+id/nav_host_fragment_activity_main"
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:defaultNavHost="true"
-            android:background="@color/lightgray"
+            android:background="@color/babypowder"
             app:layout_constraintBottom_toTopOf="@id/bottom_navview"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

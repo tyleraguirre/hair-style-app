@@ -1,5 +1,6 @@
 package com.example.haircutapp
 
+import com.example.haircutapp.hairstylesdatabase.Hairstyle
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -15,8 +16,11 @@ class ExampleUnitTest {
         assertEquals(4, 2 + 2)
     }
 
-    @Test
-    fun styleHasBeenFavoritedTrue() {
+    private lateinit var sharedViewModel: SharedViewModel
 
+    @Test
+    fun isFavoritedTrue() {
+        var test = sharedViewModel.hairstylesList
+        test
     }
 }
