@@ -15,12 +15,4 @@ class ExampleUnitTest {
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
     }
-
-    private lateinit var sharedViewModel: SharedViewModel
-
-    @Test
-    fun isFavoritedTrue() {
-        var test = sharedViewModel.hairstylesList
-        test
-    }
 }
