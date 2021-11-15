@@ -1,5 +1,6 @@
 package com.example.haircutapp
 
+import com.example.haircutapp.hairstylesdatabase.Hairstyle
 import org.junit.Test
 
 import org.junit.Assert.*

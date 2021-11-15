@@ -29,6 +29,14 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
         _selectedStyle.value = hairstyle
     }
 
+    fun isFavorited(hairstyle: Hairstyle): Boolean {
+        if (hairstyle.favorited == 1) {
+            return true
+        }
+        return false
+    }
+
+
     fun isFavorited(): Boolean {
        if (_selectedStyle.value?.favorited == 1) {
            return true

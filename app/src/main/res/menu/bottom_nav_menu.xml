@@ -4,7 +4,8 @@
     <item
         android:id="@+id/navigation_styles"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_styles" />
+        android:title="@string/title_styles"
+        android:iconTint="@color/white"/>
 
     <item
         android:id="@+id/navigation_favorites"

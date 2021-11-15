@@ -15,6 +15,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.Transformations
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.haircutapp.R
 import com.example.haircutapp.SharedViewModel
@@ -45,19 +48,24 @@ class DetailFragment : Fragment() {
 
         if (sharedViewModel.isFavorited()) {
             binding.addToFavoritesButton.isEnabled = false
-            binding.addToFavoritesButton.setBackgroundColor(resources.getColor(R.color.charcoal))
+            binding.addToFavoritesButton.setBackgroundColor(resources.getColor(R.color.black))
+            binding.addToFavoritesButton.setTextColor(resources.getColor(R.color.black))
         }
 
         setUpView()
 
         binding.aboutThisStyleButton.setOnClickListener {
             //Need to pass aboutStyle value from FB database/Json based on what Hairstyle is showing on the detail fragment
-            openWebPage(args.hairstyle.aboutStyle)
+//            openWebPage(args.hairstyle.aboutStyle)
+            Navigation.findNavController(this.about_this_style_button).navigate(DetailFragmentDirections.
+            actionDetailFragmentToAboutStyleFragment(args.hairstyle.aboutStyle))
         }
 
         binding.styleImagesButton.setOnClickListener {
             //Need to pass imagesOfStyle value from FB database/Json based on what Hairstyle is showing on the detail fragment
-            openWebPage(args.hairstyle.imagesOfStyle)
+//            openWebPage(args.hairstyle.imagesOfStyle)
+            Navigation.findNavController(this.style_images_button).navigate(DetailFragmentDirections.
+            actionDetailFragmentToStyleImagesFragment(args.hairstyle.imagesOfStyle))
         }
 
         binding.addToFavoritesButton.setOnClickListener {
@@ -68,7 +76,8 @@ class DetailFragment : Fragment() {
             sharedViewModel.updateHairstyle()
             if (sharedViewModel.isFavorited() == true) {
                 binding.addToFavoritesButton.isEnabled = false
-                binding.addToFavoritesButton.setBackgroundColor(resources.getColor(R.color.charcoal))
+                binding.addToFavoritesButton.setBackgroundColor(resources.getColor(R.color.black))
+                binding.addToFavoritesButton.setTextColor(resources.getColor(R.color.black))
             }
         }
         return binding.root

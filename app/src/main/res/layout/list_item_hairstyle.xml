@@ -34,6 +34,7 @@
         android:fontFamily="@font/concert_one"
         android:gravity="center"
         android:text="style_name"
+        android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/style_image"

@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
                 1,
                 "broflow",
                 0,
-                R.drawable.model_sv_m,
+                R.drawable.browflowxxhdpi,
                 "https://en.wikipedia.org/wiki/Wings_(haircut)",
                 "https://www.pinterest.com/bartogilvie/bro-flow-hairstyles-men/"
             ),
