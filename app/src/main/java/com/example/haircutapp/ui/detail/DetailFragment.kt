@@ -15,6 +15,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.Transformations
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.haircutapp.R
 import com.example.haircutapp.SharedViewModel
@@ -58,7 +61,9 @@ class DetailFragment : Fragment() {
 
         binding.styleImagesButton.setOnClickListener {
             //Need to pass imagesOfStyle value from FB database/Json based on what Hairstyle is showing on the detail fragment
-            openWebPage(args.hairstyle.imagesOfStyle)
+//            openWebPage(args.hairstyle.imagesOfStyle)
+            Navigation.findNavController(this.style_images_button).navigate(DetailFragmentDirections.
+            actionDetailFragmentToStyleImagesFragment(args.hairstyle.imagesOfStyle))
         }
 
         binding.addToFavoritesButton.setOnClickListener {

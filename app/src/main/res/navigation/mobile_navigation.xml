@@ -41,6 +41,16 @@
         <argument
             android:name="hairstyle"
             app:argType="com.example.haircutapp.hairstylesdatabase.Hairstyle" />
+        <action
+            android:id="@+id/action_detailFragment_to_styleImagesFragment"
+            app:destination="@id/styleImagesFragment" />
     </fragment>
-
+    <fragment
+        android:id="@+id/styleImagesFragment"
+        android:name="com.example.haircutapp.ui.hairstyleimages.StyleImagesFragment"
+        android:label="StyleImagesFragment">
+        <argument
+            android:name="hairstyleimages"
+            app:argType="string"/>
+    </fragment>
 </navigation>
