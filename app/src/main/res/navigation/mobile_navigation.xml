@@ -44,6 +44,9 @@
         <action
             android:id="@+id/action_detailFragment_to_styleImagesFragment"
             app:destination="@id/styleImagesFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_aboutStyleFragment"
+            app:destination="@id/aboutStyleFragment" />
     </fragment>
     <fragment
         android:id="@+id/styleImagesFragment"
@@ -52,5 +55,13 @@
         <argument
             android:name="hairstyleimages"
             app:argType="string"/>
+    </fragment>
+    <fragment
+        android:id="@+id/aboutStyleFragment"
+        android:name="com.example.haircutapp.ui.aboutstyle.AboutStyleFragment"
+        android:label="AboutStyleFragment">
+    <argument
+        android:name="abouthairstyle"
+        app:argType="string"/>
     </fragment>
 </navigation>

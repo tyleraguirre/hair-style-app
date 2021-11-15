@@ -56,7 +56,9 @@ class DetailFragment : Fragment() {
 
         binding.aboutThisStyleButton.setOnClickListener {
             //Need to pass aboutStyle value from FB database/Json based on what Hairstyle is showing on the detail fragment
-            openWebPage(args.hairstyle.aboutStyle)
+//            openWebPage(args.hairstyle.aboutStyle)
+            Navigation.findNavController(this.about_this_style_button).navigate(DetailFragmentDirections.
+            actionDetailFragmentToAboutStyleFragment(args.hairstyle.aboutStyle))
         }
 
         binding.styleImagesButton.setOnClickListener {
