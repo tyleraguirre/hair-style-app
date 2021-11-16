@@ -12,8 +12,12 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.example.haircutapp.R
 import android.net.Uri
+import androidx.databinding.DataBindingUtil
+import com.example.haircutapp.databinding.FragmentMapBinding
+import com.example.haircutapp.util.fadeInText
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.MapFragment
 import kotlinx.android.synthetic.main.fragment_map.*
 
 
@@ -24,18 +28,20 @@ class MapFragment : Fragment() {
     private var lastLocation: Location? = null
     private lateinit var uri: Uri
     private lateinit var locationIntent: Intent
+    private lateinit var binding: FragmentMapBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_map, container, false)
-    }
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_map,container,false)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+
+        binding.googleMapNavButton.fadeInText()
+        binding.mapButtonInfoText.fadeInText()
+
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -49,9 +55,10 @@ class MapFragment : Fragment() {
                     lastLocation = location
                 }
             }
-        google_map_nav_button.setOnClickListener {
+        binding.googleMapNavButton.setOnClickListener {
             launchIntent()
         }
+        return binding.root
     }
 
     /*This launches a GoogleMap intent that uses the users current location so they can search

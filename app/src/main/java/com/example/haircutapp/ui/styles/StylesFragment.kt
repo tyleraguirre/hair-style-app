@@ -17,6 +17,7 @@ import com.example.haircutapp.SharedViewModel
 import com.example.haircutapp.StylesAdapter
 import com.example.haircutapp.databinding.FragmentStylesBinding
 import com.example.haircutapp.hairstylesdatabase.HairstyleDatabase
+import com.example.haircutapp.util.fadeInText
 
 class StylesFragment : Fragment() {
 
@@ -47,6 +48,9 @@ class StylesFragment : Fragment() {
 
         val adapter = StylesAdapter(viewModel, sharedViewModel)
 
+        binding.stylesRecyclerview.fadeInText()
+        binding.textView.fadeInText()
+
         viewModel.hairstylesList.observe(viewLifecycleOwner, Observer { hairstyleList ->
             val sortedStyles = hairstyleList.sortedBy { it.styleName }
             adapter.submitList(sortedStyles)
@@ -59,16 +63,5 @@ class StylesFragment : Fragment() {
         return binding.root
     }
 }
-
-//
-//        viewModel.selectedStyle.observe(viewLifecycleOwner, Observer {
-//            it?.let { hairstyle ->
-//                // Navigate to detail fragment
-//                this.findNavController().navigate(
-//                    StylesFragmentDirections.actionNavigationStylesToDetailFragment(hairstyle))
-//
-//                viewModel.navigationComplete()
-//            }
-//        })
 
 

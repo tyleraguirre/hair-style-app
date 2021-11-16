@@ -19,6 +19,7 @@ import com.example.haircutapp.databinding.FragmentFavoritesBinding
 import com.example.haircutapp.hairstylesdatabase.Hairstyle
 import com.example.haircutapp.ui.detail.DetailFragment
 import com.example.haircutapp.ui.styles.StylesFragmentDirections
+import com.example.haircutapp.util.fadeInText
 
 class FavoritesFragment : Fragment() {
 
@@ -30,11 +31,16 @@ class FavoritesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorites, container, false)
 
         val manager = GridLayoutManager(activity, 3)
 
         val adapter = FavoritesAdapter(sharedViewModel)
+
+        binding.favoritesRecyclerview.fadeInText()
+        binding.favoritesText.fadeInText()
+        binding.clearbutton.fadeInText()
 
         sharedViewModel.hairstylesList.observe(viewLifecycleOwner, Observer { hairstyleslist ->
             val filteredHairstyles = hairstyleslist.filter { hairstyle ->
