@@ -47,7 +47,11 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
      fun updateHairstyle() {
         viewModelScope.launch {
             var hairstyle = _selectedStyle.value
-            hairstyle?.favorited = 1
+            if (hairstyle?.favorited == 0) {
+                hairstyle?.favorited = 1
+            } else {
+                hairstyle?.favorited = 0
+            }
             dao.update(hairstyle!!)
         }
     }

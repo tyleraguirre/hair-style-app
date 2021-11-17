@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.haircutapp.R
 import com.example.haircutapp.SharedViewModel
 import com.example.haircutapp.databinding.FragmentFavoritesBinding
+import com.example.haircutapp.hairstylesdatabase.Hairstyle
 import com.example.haircutapp.util.fadeInText
 
 class FavoritesFragment : Fragment() {
@@ -43,7 +44,7 @@ class FavoritesFragment : Fragment() {
         })
 
         binding.clearbutton.setOnClickListener {
-
+          sharedViewModel.updateHairstyle()
         }
 
         binding.favoritesRecyclerview.layoutManager = manager
