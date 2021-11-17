@@ -38,7 +38,7 @@ class StyleImagesFragment: Fragment() {
         binding.styleImagesWebview.settings.javaScriptEnabled = true
         binding.styleImagesWebview.settings.loadWithOverviewMode = true
         binding.styleImagesWebview.settings.useWideViewPort = true
-
+        
         binding.styleImagesWebview.apply {
             loadUrl(sharedViewModel.selectedStyle.value?.imagesOfStyle!!)
         }

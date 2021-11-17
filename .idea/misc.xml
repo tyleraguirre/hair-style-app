@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.31614583333333335" />
+        <entry key="app/src/main/res/drawable/buttonpressedcolor.xml" value="0.2375" />
         <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.31614583333333335" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.31614583333333335" />
         <entry key="app/src/main/res/layout/about_style.xml" value="0.22135416666666666" />

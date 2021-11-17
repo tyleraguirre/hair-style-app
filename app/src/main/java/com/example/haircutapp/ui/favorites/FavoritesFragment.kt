@@ -4,21 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.haircutapp.R
 import com.example.haircutapp.SharedViewModel
-import com.example.haircutapp.StylesAdapter
 import com.example.haircutapp.databinding.FragmentFavoritesBinding
-import com.example.haircutapp.hairstylesdatabase.Hairstyle
-import com.example.haircutapp.ui.detail.DetailFragment
-import com.example.haircutapp.ui.styles.StylesFragmentDirections
 import com.example.haircutapp.util.fadeInText
 
 class FavoritesFragment : Fragment() {
@@ -46,9 +39,12 @@ class FavoritesFragment : Fragment() {
             val filteredHairstyles = hairstyleslist.filter { hairstyle ->
                 hairstyle.favorited == 1
             }
-            adapter.submitList(filteredHairstyles)
+           adapter.submitList(filteredHairstyles)
         })
 
+        binding.clearbutton.setOnClickListener {
+
+        }
 
         binding.favoritesRecyclerview.layoutManager = manager
 
