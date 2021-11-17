@@ -21,6 +21,7 @@
             android:layout_height="51dp"
             android:text="@string/map_fragment_button"
             android:textColor="@color/white"
+            android:backgroundTint="@color/buttonpressedcolor"
             android:fontFamily="@font/concert_one"
             map:layout_constraintBottom_toBottomOf="parent"
             map:layout_constraintEnd_toEndOf="parent"

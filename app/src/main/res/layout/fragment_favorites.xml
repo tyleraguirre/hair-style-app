@@ -46,6 +46,7 @@
             android:layout_height="wrap_content"
             android:text="Clear Favorites"
             android:textColor="@color/white"
+            android:backgroundTint="@color/buttonpressedcolor"
             app:layout_constraintBottom_toTopOf="@+id/favorites_recyclerview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
