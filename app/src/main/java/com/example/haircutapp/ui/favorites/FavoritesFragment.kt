@@ -56,11 +56,11 @@ class FavoritesFragment : Fragment() {
 
 
         binding.clearbutton.setOnClickListener {
-          sharedViewModel.updateHairstyle()
-            binding.clearbutton.isEnabled = false
-            binding.clearbutton.setBackgroundColor(resources.getColor(R.color.black))
-            binding.clearbutton.setTextColor(resources.getColor(R.color.black))
-        }
+                sharedViewModel.updateHairstyle()
+                binding.clearbutton.isEnabled = false
+                binding.clearbutton.setBackgroundColor(resources.getColor(R.color.black))
+                binding.clearbutton.setTextColor(resources.getColor(R.color.black))
+            }
 
         binding.favoritesRecyclerview.layoutManager = manager
 
