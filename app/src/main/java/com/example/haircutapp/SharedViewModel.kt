@@ -26,7 +26,6 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
     val selectedStyle: LiveData<Hairstyle?>
         get() = _selectedStyle
 
-    private val favoritesFragment = FavoritesFragment()
 
     fun setHairstyle(hairstyle: Hairstyle) {
         _selectedStyle.value = hairstyle
@@ -54,7 +53,6 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
                 hairstyle?.favorited = 1
             } else if(hairstyle?.favorited == 1) {
                 hairstyle?.favorited = 0
-//                favoritesFragment.clearbutton?.isEnabled = false
             }
             dao.update(hairstyle!!)
         }
