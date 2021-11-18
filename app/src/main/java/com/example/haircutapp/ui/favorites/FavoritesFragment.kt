@@ -14,6 +14,7 @@ import com.example.haircutapp.SharedViewModel
 import com.example.haircutapp.databinding.FragmentFavoritesBinding
 import com.example.haircutapp.hairstylesdatabase.Hairstyle
 import com.example.haircutapp.util.fadeInText
+import kotlinx.android.synthetic.main.fragment_favorites.*
 
 class FavoritesFragment : Fragment() {
 
@@ -40,11 +41,25 @@ class FavoritesFragment : Fragment() {
             val filteredHairstyles = hairstyleslist.filter { hairstyle ->
                 hairstyle.favorited == 1
             }
-           adapter.submitList(filteredHairstyles)
+            adapter.submitList(filteredHairstyles)
+
+            println("$filteredHairstyles")
         })
+
+        if (sharedViewModel.isFavorited() == false) {
+            binding.clearbutton.isEnabled = false
+            binding.clearbutton.setBackgroundColor(resources.getColor(R.color.black))
+            binding.clearbutton.setTextColor(resources.getColor(R.color.black))
+        } else {
+            binding.clearbutton.isEnabled = true
+        }
+
 
         binding.clearbutton.setOnClickListener {
           sharedViewModel.updateHairstyle()
+            binding.clearbutton.isEnabled = false
+            binding.clearbutton.setBackgroundColor(resources.getColor(R.color.black))
+            binding.clearbutton.setTextColor(resources.getColor(R.color.black))
         }
 
         binding.favoritesRecyclerview.layoutManager = manager

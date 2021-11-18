@@ -12,6 +12,7 @@ import com.example.haircutapp.ui.favorites.FavoritesFragment
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_detail.*
+import kotlinx.android.synthetic.main.fragment_favorites.*
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -25,16 +26,18 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
     val selectedStyle: LiveData<Hairstyle?>
         get() = _selectedStyle
 
+    private val favoritesFragment = FavoritesFragment()
+
     fun setHairstyle(hairstyle: Hairstyle) {
         _selectedStyle.value = hairstyle
     }
-
-    fun isFavorited(hairstyle: Hairstyle): Boolean {
-        if (hairstyle.favorited == 1) {
-            return true
-        }
-        return false
-    }
+// This was to try to run a test
+//    fun isFavorited(hairstyle: Hairstyle): Boolean {
+//        if (hairstyle.favorited == 1) {
+//            return true
+//        }
+//        return false
+//    }
 
 
     fun isFavorited(): Boolean {
@@ -49,15 +52,16 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
             var hairstyle = _selectedStyle.value
             if (hairstyle?.favorited == 0) {
                 hairstyle?.favorited = 1
-            } else {
+            } else if(hairstyle?.favorited == 1) {
                 hairstyle?.favorited = 0
+//                favoritesFragment.clearbutton?.isEnabled = false
             }
             dao.update(hairstyle!!)
         }
     }
 }
 
-    /*This function gets FB reference and we pass in the styleList to the url to access our objects then pass
+    /*This function gets FireBase reference and we pass in the styleList to the url to access our objects then pass
     it to our live data for the fragment
      */
 
