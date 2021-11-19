@@ -54,7 +54,10 @@ class FavoritesFragment : Fragment() {
             binding.clearbutton.isEnabled = true
         }
 
-
+/* Here I need this button onClicked to remove all favorited/saved hairstyles from this
+Favorited Fragment and then disable the button but at the moment it will only remove 1
+and then disable the button
+ */
         binding.clearbutton.setOnClickListener {
                 sharedViewModel.updateHairstyle()
                 binding.clearbutton.isEnabled = false
