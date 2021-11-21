@@ -1,5 +1,6 @@
 package com.example.haircutapp.util
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -14,14 +15,12 @@ fun View.fadeInText() {
 
 fun Button.isBlackedOut() {
     this.isEnabled = false
-    this.setBackgroundColor(resources.getColor(com.example.haircutapp.R.color.black))
-    this.setTextColor(resources.getColor(com.example.haircutapp.R.color.black))
+    this.alpha = 0.2F
 }
+
 
 fun Button.isNormalState() {
     this.isEnabled = true
-    this.setBackgroundColor(resources.getColor(R.color.darkblue))
-    this.setTextColor(resources.getColor(R.color.white))
 }
 
 fun Fragment.logd(message: String){
