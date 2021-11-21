@@ -66,7 +66,7 @@ and then disable the button
                 if (isEmpty) {
                     binding.clearbutton.isBlackedOut()
                 } else {
-                    binding.clearbutton.isEnabled = true
+                    binding.clearbutton.isNormalState()
                 }
             }
 
