@@ -27,6 +27,8 @@ import com.example.haircutapp.hairstylesdatabase.HairstyleDao
 import com.example.haircutapp.hairstylesdatabase.HairstyleDatabase
 import com.example.haircutapp.ui.favorites.FavoritesAdapter
 import com.example.haircutapp.ui.favorites.FavoritesFragment
+import com.example.haircutapp.util.isBlackedOut
+import com.example.haircutapp.util.isNormalState
 import kotlinx.android.synthetic.main.fragment_detail.*
 
 class DetailFragment : Fragment() {
@@ -46,11 +48,7 @@ class DetailFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-        if (sharedViewModel.isFavorited()) {
-            binding.addToFavoritesButton.isEnabled = false
-            binding.addToFavoritesButton.setBackgroundColor(resources.getColor(R.color.black))
-            binding.addToFavoritesButton.setTextColor(resources.getColor(R.color.black))
-        }
+
 
         setUpView()
 
@@ -74,10 +72,11 @@ class DetailFragment : Fragment() {
             //need to hide button once style has been favorited
             Toast.makeText(context, "Added to Favorites", Toast.LENGTH_SHORT).show()
             sharedViewModel.updateHairstyle()
-            if (sharedViewModel.isFavorited() == true) {
-                binding.addToFavoritesButton.isEnabled = false
-                binding.addToFavoritesButton.setBackgroundColor(resources.getColor(R.color.black))
-                binding.addToFavoritesButton.setTextColor(resources.getColor(R.color.black))
+            if (sharedViewModel.isFavorited()) {
+                binding.addToFavoritesButton.isBlackedOut()
+            } else {
+                binding.addToFavoritesButton.isNormalState()
+//
             }
         }
         return binding.root
@@ -93,6 +92,16 @@ class DetailFragment : Fragment() {
     fun setUpView() {
         binding.detailStyleName.text = args.hairstyle.styleName
         binding.detailStyleImage.setImageResource(args.hairstyle.styleImage!!)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (sharedViewModel.isFavorited()) {
+            binding.addToFavoritesButton.isBlackedOut()
+        } else {
+            binding.addToFavoritesButton.isNormalState()
+        }
+
     }
 }
 

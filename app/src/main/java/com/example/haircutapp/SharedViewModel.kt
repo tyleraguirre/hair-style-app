@@ -26,10 +26,10 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
     val selectedStyle: LiveData<Hairstyle?>
         get() = _selectedStyle
 
-
     fun setHairstyle(hairstyle: Hairstyle) {
         _selectedStyle.value = hairstyle
     }
+
 // This was to try to run a test
 //    fun isFavorited(hairstyle: Hairstyle): Boolean {
 //        if (hairstyle.favorited == 1) {
@@ -46,16 +46,53 @@ class SharedViewModel(application: Application): AndroidViewModel(application) {
         return false
     }
 
+    // Check to see if there are any styles favorited
+    fun favoritesEmpty(): Boolean {
+        if (hairstylesList.value.isNullOrEmpty()) {
+            return false
+        }
+        else if (!hairstylesList.value.isNullOrEmpty())  {
+            for(style in hairstylesList.value!!) {
+                if (style.favorited != 0) {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+
+
      fun updateHairstyle() {
         viewModelScope.launch {
             var hairstyle = _selectedStyle.value
             if (hairstyle?.favorited == 0) {
                 hairstyle?.favorited = 1
-            } else if(hairstyle?.favorited == 1) {
-                hairstyle?.favorited = 0
+            } else {
+                hairstyle?.favorited = 1
             }
             dao.update(hairstyle!!)
         }
+    }
+
+    // Get all the hairstyles from the database
+    //  and set the favorited value to 0 then update each
+
+    fun removeAllFavorited(completion: (Boolean) -> Unit) {
+        val listToModify = hairstylesList.value
+
+        if (!listToModify.isNullOrEmpty()) {
+            listToModify.forEach {
+                it.let { styleToUpdate ->
+                    viewModelScope.launch {
+                        styleToUpdate.favorited = 0
+                        dao.update(styleToUpdate)
+
+                    }
+
+                }
+            }
+        }
+        completion(favoritesEmpty())
     }
 }
 

@@ -1,6 +1,7 @@
 package com.example.haircutapp.ui.favorites
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,9 @@ import com.example.haircutapp.SharedViewModel
 import com.example.haircutapp.databinding.FragmentFavoritesBinding
 import com.example.haircutapp.hairstylesdatabase.Hairstyle
 import com.example.haircutapp.util.fadeInText
+import com.example.haircutapp.util.isBlackedOut
+import com.example.haircutapp.util.isNormalState
+import com.example.haircutapp.util.logd
 import kotlinx.android.synthetic.main.fragment_favorites.*
 
 class FavoritesFragment : Fragment() {
@@ -33,37 +37,41 @@ class FavoritesFragment : Fragment() {
 
         val adapter = FavoritesAdapter(sharedViewModel)
 
+
+
         binding.favoritesRecyclerview.fadeInText()
         binding.favoritesText.fadeInText()
         binding.clearbutton.fadeInText()
 
-        sharedViewModel.hairstylesList.observe(viewLifecycleOwner, Observer { hairstyleslist ->
-            val filteredHairstyles = hairstyleslist.filter { hairstyle ->
-                hairstyle.favorited == 1
+        sharedViewModel.hairstylesList.observe(viewLifecycleOwner, Observer {
+            it?.let { hairstyleslist ->
+                val filteredHairstyles = hairstyleslist.filter { hairstyle ->
+                    hairstyle.favorited == 1
+                }
+
+                adapter.submitList(filteredHairstyles)
+
+                println("$filteredHairstyles")
             }
-            adapter.submitList(filteredHairstyles)
 
-            println("$filteredHairstyles")
         })
-
-        if (sharedViewModel.isFavorited() == false) {
-            binding.clearbutton.isEnabled = false
-            binding.clearbutton.setBackgroundColor(resources.getColor(R.color.black))
-            binding.clearbutton.setTextColor(resources.getColor(R.color.black))
-        } else {
-            binding.clearbutton.isEnabled = true
-        }
 
 /* Here I need this button onClicked to remove all favorited/saved hairstyles from this
 Favorited Fragment and then disable the button but at the moment it will only remove 1
 and then disable the button
  */
         binding.clearbutton.setOnClickListener {
-                sharedViewModel.updateHairstyle()
-                binding.clearbutton.isEnabled = false
-                binding.clearbutton.setBackgroundColor(resources.getColor(R.color.black))
-                binding.clearbutton.setTextColor(resources.getColor(R.color.black))
+            // here we call our new function
+            sharedViewModel.removeAllFavorited() { isEmpty ->
+                if (isEmpty) {
+                    binding.clearbutton.isBlackedOut()
+                } else {
+                    binding.clearbutton.isEnabled = true
+                }
             }
+
+        }
+
 
         binding.favoritesRecyclerview.layoutManager = manager
 
@@ -71,4 +79,16 @@ and then disable the button
 
         return binding.root
     }
+
+
+    // When the fragment resumes we will check the state of the button
+    override fun onResume() {
+        super.onResume()
+        if (sharedViewModel.favoritesEmpty()) {
+            binding.clearbutton.isBlackedOut()
+        } else {
+            binding.clearbutton.isNormalState()
+        }
+    }
+
 }
