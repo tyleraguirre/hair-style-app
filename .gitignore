@@ -93,3 +93,5 @@ native/
 caches/
 kotlin-profile/
 daemon/
+.DS_Store
+app/
