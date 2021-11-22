@@ -87,3 +87,9 @@ lint/tmp/
 
 # Android Profiling
 *.hprof
+
+wrapper/
+native/
+caches/
+kotlin-profile/
+daemon/
